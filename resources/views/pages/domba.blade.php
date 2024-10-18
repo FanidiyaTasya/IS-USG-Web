@@ -17,8 +17,8 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead class="bg-primary text-white">
+                    <table class="table rounded-3 overflow-hidden">
+                        <thead class="table-primary text-white">
                             <tr>
                                 <th>No</th>
                                 <th>ID Domba</th>

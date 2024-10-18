@@ -10,9 +10,8 @@
                     <div>
                         <input type="text" name="search" class="form-control" placeholder="Search...">
                     </div>
-
                     <div>
-                        <button type="submit" class="btn btn-primary ms-2">Tambah</button>
+                        <a href="{{ route('sheep.create') }}" class="btn btn-primary ms-2">Tambah</a>
                     </div>
                 </div>
 
@@ -33,9 +32,16 @@
                                 <td>4543456</td>
                                 <td>Eichmann</td>
                                 <td>22-2-2023</td>
-                                <td><a href="">Edit</a>
-                                    |
-                                    <a href="">Hapus</a>
+                                <td>
+                                    <button type="button" class="btn btn-info btn-sm me-2">
+                                        <iconify-icon icon="solar:pen-new-square-outline" class="fs-5"></iconify-icon>
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-sm me-2">
+                                        <iconify-icon icon="solar:eye-outline" class="fs-5"></iconify-icon>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm">
+                                        <iconify-icon icon="solar:trash-bin-2-outline" class="fs-5"></iconify-icon>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

@@ -10,8 +10,7 @@ class SheepController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        return view('pages.sheep',
-        [
+        return view('pages.sheep.sheep', [
             'title' => 'Data Domba'
         ]);
     }
@@ -19,9 +18,10 @@ class SheepController extends Controller {
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('pages.sheep.create', [
+            'title' => 'Tambah Data Domba'
+        ]);
     }
 
     /**

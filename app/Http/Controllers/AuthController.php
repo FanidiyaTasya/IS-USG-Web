@@ -9,7 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class AuthController extends Controller {
     
     public function index() {
-        return view('pages.login');
+        return view('pages.auth.login');
     }
     
 }

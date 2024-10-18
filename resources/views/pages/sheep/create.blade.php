@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<form action="" method="POST">
+<form action="{{ route('sheep.store') }}" method="POST">
   @csrf
   <div class="col-12">
       <div class="card">

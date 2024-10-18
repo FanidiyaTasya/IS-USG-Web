@@ -23,29 +23,47 @@
                                 <th>ID Domba</th>
                                 <th>Nama Domba</th>
                                 <th>Tanggal Lahir</th>
+                                {{-- <th>Umur</th> --}}
+                                <th>Jenis Domba</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($sheep as $index => $shp)
                             <tr>
-                                <td>1</td>
-                                <td>4543456</td>
-                                <td>Eichmann</td>
-                                <td>22-2-2023</td>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $shp->id }}</td>
+                                <td>{{ $shp->sheep_name }}</td>
+                                <td>{{ $shp->sheep_birth }}</td>
+                                <td>{{ $shp->sheep_type }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-sm me-2">
+                                     <a href="{{ route('sheep.edit', $shp->id) }}" class="btn btn-info btn-sm me-2">
                                         <iconify-icon icon="solar:pen-new-square-outline" class="fs-5"></iconify-icon>
-                                    </button>
-                                    <button type="button" class="btn btn-warning btn-sm me-2">
+                                    </a>
+                                    <a href="/sheep/{{ $shp->id }}" class="btn btn-warning btn-sm me-2">
                                         <iconify-icon icon="solar:eye-outline" class="fs-5"></iconify-icon>
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-sm">
+                                    </a>
+                                    <a href="{{ route('sheep.destroy', $shp->id) }}" class="btn btn-danger btn-sm" data-confirm-delete>
                                         <iconify-icon icon="solar:trash-bin-2-outline" class="fs-5"></iconify-icon>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    <div class="flex justify-between px-6">
+                        <div class="mt-3 text-xs text-gray-700">
+                            Showing
+                            {{ $sheep->firstItem() }}
+                            to
+                            {{ $sheep->lastItem() }}
+                            of
+                            {{ $sheep->total() }}
+                        </div>
+                        <div class="mt-1">
+                            {{ $sheep->links() }}
+                        </div>
+                      </div>
                 </div>
 
             </div>

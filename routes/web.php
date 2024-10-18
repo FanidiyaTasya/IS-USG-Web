@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InitialAssessmentController;
+use App\Http\Controllers\RadiologyController;
 use App\Http\Controllers\SheepController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VitalSignController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,15 +26,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('/sheep', SheepController::class);
-Route::get('/assessment', function () {
-    return view('pages.assessment.assessment');
-});
-Route::get('/vital-sign', function () {
-    return view('pages.vital-sign.vital');
-});
-Route::get('/radiology', function () {
-    return view('pages.radiology.radiology');
-});
-Route::get('/user', function () {
-    return view('pages.user.user');
-});
+Route::resource('/assessment', InitialAssessmentController::class);
+Route::resource('/vital-sign', VitalSignController::class);
+Route::resource('/radiology', RadiologyController::class);
+Route::resource('/user', UserController::class);

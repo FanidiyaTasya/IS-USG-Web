@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sheep extends Model {
     use HasFactory;
+
+    protected $guarded = ['id'];
+    public $timestamps = false;
 }

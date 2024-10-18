@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AuthController::class, 'index']);
+Route::post('/auth', [AuthController::class, 'auth'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 Route::resource('/sheep', SheepController::class);
 Route::get('/assessment', function () {
     return view('pages.assessment.assessment');

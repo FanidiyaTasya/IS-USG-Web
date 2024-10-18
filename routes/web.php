@@ -24,3 +24,15 @@ Route::get('/dashboard', function () {
 Route::get('/sheep', function () {
     return view('pages.domba');
 });
+Route::get('/assessment', function () {
+    return view('pages.assessment');
+});
+Route::get('/vital-sign', function () {
+    return view('pages.vital');
+});
+Route::get('/radiology', function () {
+    return view('pages.radiology');
+});
+Route::get('/user', function () {
+    return view('pages.user');
+});

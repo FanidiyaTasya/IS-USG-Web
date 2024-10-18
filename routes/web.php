@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SheepController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +20,8 @@ Route::get('/', [AuthController::class, 'index']);
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 });
-Route::get('/sheep', function () {
-    return view('pages.domba');
-});
+
+Route::resource('/sheep', SheepController::class);
 Route::get('/assessment', function () {
     return view('pages.assessment');
 });

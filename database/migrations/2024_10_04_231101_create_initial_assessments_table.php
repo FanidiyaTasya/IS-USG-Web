@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('symptom_2');
             $table->string('symptom_3');
             $table->date('check_date');
+            $table->text('desc');
             $table->timestamps();
         });
     }

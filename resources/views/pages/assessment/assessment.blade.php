@@ -20,7 +20,7 @@
                         <thead class="table-primary text-white">
                             <tr>
                                 <th>No</th>
-                                <th>ID Domba</th>
+                                {{-- <th>ID Domba</th> --}}
                                 <th>Nama Domba</th>
                                 <th>Nama Assesor</th>
                                 <th>Tanggal Periksa</th>
@@ -28,12 +28,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($assessments as $assessment)
                             <tr>
-                                <td>1</td>
-                                <td>4543456</td>
-                                <td>Nana</td>
-                                <td>Eichmann</td>
-                                <td>22-2-2023</td>
+                                <td>{{ $index + 1 }}</td>
+                                {{-- <td>{{ $assessment->sheep_id }}</td> --}}
+                                <td>{{ $assessment->sheep->sheep_name }}</td>
+                                <td>{{ $assessment->user->name }}</td>
+                                <td>{{ $assessment->check_date }}</td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm me-2">
                                         <iconify-icon icon="solar:pen-new-square-outline" class="fs-5"></iconify-icon>
@@ -45,24 +46,23 @@
                                         <iconify-icon icon="solar:trash-bin-2-outline" class="fs-5"></iconify-icon>
                                     </button>
                                 </td>
-
-
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                    <div class="flex justify-between px-6">
-                        <div class="mt-3 text-xs text-gray-700">
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div class="text-xs text-gray-700">
                             Showing
-                            {{-- {{ $assesments->firstItem() }} --}}
+                            {{ $assessments->firstItem() }}
                             to
-                            {{-- {{ $assesments->lastItem() }} --}}
+                            {{ $assessments->lastItem() }}
                             of
-                            {{-- {{ $assesments->total() }} --}}
+                            {{ $assessments->total() }}
                         </div>
-                        <div class="mt-1">
-                            {{-- {{ $assesments->links() }} --}}
+                        <div>
+                            {{ $assessments->links('pagination::bootstrap-4') }}
                         </div>
-                      </div>
+                    </div>
                 </div>
 
             </div>

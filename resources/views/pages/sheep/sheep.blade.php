@@ -34,7 +34,7 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $shp->id }}</td>
                                 <td>{{ $shp->sheep_name }}</td>
-                                <td>{{ $shp->sheep_birth }}</td>
+                                <td>{{ Carbon\Carbon::parse($shp->sheep_birth)->format('d-m-Y') }}</td>
                                 <td>{{ $shp->sheep_type }}</td>
                                 <td>
                                      <a href="{{ route('sheep.edit', $shp->id) }}" class="btn btn-info btn-sm me-2">
@@ -51,8 +51,8 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="flex justify-between px-6">
-                        <div class="mt-3 text-xs text-gray-700">
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div class="text-xs text-gray-700">
                             Showing
                             {{ $sheep->firstItem() }}
                             to
@@ -60,10 +60,10 @@
                             of
                             {{ $sheep->total() }}
                         </div>
-                        <div class="mt-1">
-                            {{ $sheep->links() }}
+                        <div>
+                            {{ $sheep->links('pagination::bootstrap-4') }}
                         </div>
-                      </div>
+                    </div>
                 </div>
 
             </div>

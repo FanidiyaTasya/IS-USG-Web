@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Sheep;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,7 @@ class DatabaseSeeder extends Seeder {
         // ]);
 
         User::create([
-            'name' => 'Admin User',
+            'name' => 'Fanidiya Tasya',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('1234'),
             'role' => 'Admin'
@@ -33,5 +34,7 @@ class DatabaseSeeder extends Seeder {
             'password' => Hash::make('password'),
             'role' => 'Karyawan'
         ]);
+
+        Sheep::factory()->count(15)->create();
     }
 }

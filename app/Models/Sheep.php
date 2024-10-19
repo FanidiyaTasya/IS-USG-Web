@@ -9,7 +9,13 @@ class Sheep extends Model {
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $primaryKey = 'id';
     public $timestamps = false;
+    protected $fillable = [
+        'sheep_name',
+        'sheep_birth',
+        'sheep_type',
+    ];
 
     public function initial_assessments() {
         return $this->hasMany(InitialAssessment::class);

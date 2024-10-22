@@ -10,7 +10,6 @@ class Sheep extends Model {
 
     protected $guarded = ['id'];
     protected $primaryKey = 'id';
-    public $timestamps = false;
     protected $fillable = [
         'sheep_name',
         'sheep_birth',

@@ -24,8 +24,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <strong>Jenis Domba:</strong>
-                        <p>{{ $sheep->sheep_type }}</p>
+                        <strong>Jenis Kelamin Domba:</strong>
+                        <p>{{ $sheep->sheep_gender }}</p>
                     </div>
                 </div>
                 <div class="col-12">

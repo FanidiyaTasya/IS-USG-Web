@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<form action="/sheep/{{ $sheep->id }}" method="POST" enctype="multipart/form-data">
+<form action="/sheep/{{ $sheep->id }}" method="POST">
     @method('PUT')
     @csrf
     <div class="col-12">
@@ -25,13 +25,23 @@
                             <input type="date" name="sheep_birth" id="sheep_birth" value="{{ old('sheep_birth', $sheep->sheep_birth) }}" class="form-control">
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    {{-- <div class="col-lg-6">
                         <div class="mb-4">
                             <label class="form-label">Jenis Domba</label>
                             <select class="form-select" name="sheep_type" aria-label="Default select example">
                                 <option disabled>Pilih</option>
                                 <option value="Induk" {{ (old('sheep_type', $sheep->sheep_type) == 'Induk') ? 'selected' : '' }}>Induk</option>
                                 <option value="Anak" {{ (old('sheep_type', $sheep->sheep_type) == 'Anak') ? 'selected' : '' }}>Anak</option>
+                            </select>
+                        </div>
+                    </div> --}}
+                    <div class="col-lg-6">
+                        <div class="mb-4">
+                            <label class="form-label">Jenis Kelamin Domba</label>
+                            <select class="form-select" name="sheep_gender" aria-label="Default select example">
+                                <option disabled>Pilih</option>
+                                <option value="Jantan" {{ (old('sheep_gender', $sheep->sheep_gender) == 'Jantan') ? 'selected' : '' }}>Jantan</option>
+                                <option value="Betina" {{ (old('sheep_gender', $sheep->sheep_gender) == 'Betina') ? 'selected' : '' }}>Betina</option>
                             </select>
                         </div>
                     </div>

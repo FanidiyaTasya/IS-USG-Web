@@ -24,7 +24,8 @@
                                 <th>Nama Domba</th>
                                 <th>Tanggal Lahir</th>
                                 {{-- <th>Umur</th> --}}
-                                <th>Jenis Domba</th>
+                                {{-- <th>Jenis Domba</th> --}}
+                                <th>Jenis Kelamin Domba</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -35,7 +36,7 @@
                                 <td>{{ $shp->id }}</td>
                                 <td>{{ $shp->sheep_name }}</td>
                                 <td>{{ Carbon\Carbon::parse($shp->sheep_birth)->format('d-m-Y') }}</td>
-                                <td>{{ $shp->sheep_type }}</td>
+                                <td>{{ $shp->sheep_gender }}</td>
                                 <td>
                                      <a href="{{ route('sheep.edit', $shp->id) }}" class="btn btn-info btn-sm me-2">
                                         <iconify-icon icon="solar:pen-new-square-outline" class="fs-5"></iconify-icon>

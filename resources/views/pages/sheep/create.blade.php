@@ -24,13 +24,23 @@
                           <input type="date" name="sheep_birth" id="sheep_birth" value="{{ old('sheep_birth') }}" class="form-control">
                       </div>
                   </div>
-                  <div class="col-lg-6">
+                  {{-- <div class="col-lg-6">
                       <div class="mb-4">
                           <label class="form-label">Jenis Domba</label>
                           <select class="form-select" name="sheep_type" aria-label="Default select example">
                               <option selected disabled>Pilih</option>
                               <option value="Induk">Induk</option>
                               <option value="Anak">Anak</option>
+                          </select>
+                      </div>
+                  </div> --}}
+                  <div class="col-lg-6">
+                      <div class="mb-4">
+                          <label class="form-label">Jenis Kelamin Domba</label>
+                          <select class="form-select" name="sheep_gender" aria-label="Default select example">
+                              <option selected disabled>Pilih Jenis Kelamin</option>
+                              <option value="Jantan">Jantan</option>
+                              <option value="Betina">Betina</option>
                           </select>
                       </div>
                   </div>

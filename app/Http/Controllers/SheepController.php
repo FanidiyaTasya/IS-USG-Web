@@ -18,7 +18,7 @@ class SheepController extends Controller {
         return view('pages.sheep.sheep',
         [
             'title' => 'Data Domba',
-            'sheep' => Sheep::paginate(5)
+            'sheep' => Sheep::orderBy('created_at', 'desc')->paginate(8)
         ]);
     }
 
@@ -38,7 +38,7 @@ class SheepController extends Controller {
         Sheep::create([
             'sheep_name' => $request->sheep_name,
             'sheep_birth' => $request->sheep_birth,
-            'sheep_type' => $request->sheep_type,
+            'sheep_gender' => $request->sheep_gender,
         ]);
         Alert::success('Berhasil!', 'Data Domba berhasil disimpan.');
         return redirect('/sheep');
@@ -49,7 +49,7 @@ class SheepController extends Controller {
      */
     public function show(Sheep $sheep) {
         return view('pages.sheep.show', [
-            'title' => 'Laporan',
+            'title' => 'Detail Data Domba',
             'sheep' => Sheep::findOrFail($sheep->id),
         ]);
     }

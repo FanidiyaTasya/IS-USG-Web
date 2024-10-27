@@ -21,10 +21,10 @@
                         <thead class="table-primary text-white">
                         <tr>
                             <th>No</th>
-                            <th>Suhu</th>
-                            <th>Denyut jantung</th>
-                            <th>Laju Pernapasan</th>
-                            <th>Berat</th>
+                            <th>Tanggal Pemeriksaan</th>
+                            <th>Nama Domba</th>
+                            <th>Usia Kandungan</th>
+                            <th>Perkiraan Lahir</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>

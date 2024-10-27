@@ -14,9 +14,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('assessment_id')->constrained('initial_assessments');
             $table->string('ultrasound_image');
-            $table->string('pregnancy_status');
-            $table->integer('gestational_age');
-            $table->date('due_date');
+            $table->integer('gestational_age')->unsigned()->nullable();;
+            $table->date('est_birth')->nullable();
+            $table->enum('pregnancy_status', ['Hamil', 'Tidak Hamil']);
             $table->timestamps();
         });
     }

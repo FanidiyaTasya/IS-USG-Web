@@ -13,10 +13,11 @@ return new class extends Migration
         Schema::create('vital_signs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('assessment_id')->constrained('initial_assessments');
-            $table->float('temperature');
-            $table->integer('heart_rate');
-            $table->integer('respiratory_rate');
-            // $table->float('weight');
+            $table->float('temperature', 4, 1);
+            $table->integer('heart_rate')->unsigned();
+            $table->integer('respiratory_rate')->unsigned();
+            $table->float('weight', 5, 2);
+            $table->enum('status_condition', ['Sehat', 'Tidak Sehat']);
             $table->timestamps();
         });
     }

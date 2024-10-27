@@ -14,9 +14,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('sheep_id')->constrained('sheep');
             $table->foreignId('user_id')->constrained('users');
-            $table->string('symptom_1');
-            $table->string('symptom_2');
-            $table->string('symptom_3');
+            $table->string('symptom_1', 100);
+            $table->string('symptom_2', 100);
+            $table->string('symptom_3', 100);
             $table->date('check_date');
             $table->text('desc')->nullable();
             $table->timestamps();

@@ -1,26 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Models\InitialAssessment;
+use App\Models\VitalSign;
 use Illuminate\Http\Request;
 
-class UserController extends Controller {
+class VitalSignController extends Controller {
     /**
      * Display a listing of the resource.
      */
     public function index() {
-        return view('pages.user.user', [
-            'title' => 'Manajemen Pengguna'
+        return view('pages.vital-sign.vital', [
+            'title' => 'Tanda Vital'
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('pages.vital-sign.create', [
+            'title' => 'Tambah Data Tanda Vital',
+            'assessments' => InitialAssessment::with('sheep')->get()
+        ]);
     }
 
     /**
@@ -34,7 +38,7 @@ class UserController extends Controller {
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(VitalSign $vitalSign)
     {
         //
     }
@@ -42,7 +46,7 @@ class UserController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(VitalSign $vitalSign)
     {
         //
     }
@@ -50,7 +54,7 @@ class UserController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, VitalSign $vitalSign)
     {
         //
     }
@@ -58,7 +62,7 @@ class UserController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(VitalSign $vitalSign)
     {
         //
     }

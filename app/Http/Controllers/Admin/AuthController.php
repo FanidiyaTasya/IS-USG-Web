@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller {
     
@@ -23,7 +24,7 @@ class AuthController extends Controller {
                 return redirect('/dashboard');
             }
         }
-        Alert::error('Gagal!', 'Email atau Password salah!');
+        Session::flash('error', 'Email atau Password salah!');
         return back()->withInput($request->only('email'));
     }
 

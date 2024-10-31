@@ -1,24 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\radiology;
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class RadiologyController extends Controller {
+class UserController extends Controller {
     /**
      * Display a listing of the resource.
      */
     public function index() {
-        return view('pages.radiology.radiology');
+        return view('pages.user.user', [
+            'title' => 'Manajemen Pengguna'
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('pages.user.create', [
+            'title' => 'Manajemen Pengguna'
+        ]);
     }
 
     /**
@@ -32,7 +36,7 @@ class RadiologyController extends Controller {
     /**
      * Display the specified resource.
      */
-    public function show(radiology $radiology)
+    public function show(User $user)
     {
         //
     }
@@ -40,7 +44,7 @@ class RadiologyController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(radiology $radiology)
+    public function edit(User $user)
     {
         //
     }
@@ -48,7 +52,7 @@ class RadiologyController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, radiology $radiology)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -56,7 +60,7 @@ class RadiologyController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(radiology $radiology)
+    public function destroy(User $user)
     {
         //
     }

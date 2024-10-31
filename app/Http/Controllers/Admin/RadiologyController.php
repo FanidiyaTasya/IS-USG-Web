@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\VitalSign;
+use App\Http\Controllers\Controller;
+use App\Models\radiology;
 use Illuminate\Http\Request;
 
-class VitalSignController extends Controller {
+class RadiologyController extends Controller {
     /**
      * Display a listing of the resource.
      */
     public function index() {
-        return view('pages.vital-sign.vital', [
-            'title' => 'Tanda Vital'
-        ]);
+        return view('pages.radiology.radiology');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create() 
+    public function create()
     {
-        // 
+        //
     }
 
     /**
@@ -34,7 +33,7 @@ class VitalSignController extends Controller {
     /**
      * Display the specified resource.
      */
-    public function show(VitalSign $vitalSign)
+    public function show(radiology $radiology)
     {
         //
     }
@@ -42,7 +41,7 @@ class VitalSignController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(VitalSign $vitalSign)
+    public function edit(radiology $radiology)
     {
         //
     }
@@ -50,7 +49,7 @@ class VitalSignController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, VitalSign $vitalSign)
+    public function update(Request $request, radiology $radiology)
     {
         //
     }
@@ -58,7 +57,7 @@ class VitalSignController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(VitalSign $vitalSign)
+    public function destroy(radiology $radiology)
     {
         //
     }

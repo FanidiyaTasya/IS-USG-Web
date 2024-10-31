@@ -29,9 +29,9 @@
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>4543456</td>
-                                <td>Eichmann</td>
-                                <td>22-2-2023</td>
+                                <td>Fanidiya Tasya</td>
+                                <td>admin@gmail.com</td>
+                                <td>Admin</td>
                                 <td>
                                     <a href="#" class="text-info">
                                         <iconify-icon icon="solar:pen-new-square-outline" class="fs-5"></iconify-icon>

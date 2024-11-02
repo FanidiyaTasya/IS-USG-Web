@@ -4,18 +4,18 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Data Domba</h5>
+                <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
 
                 <div class="d-flex justify-content-end mb-3">
                     <div>
-                        <input type="text" name="search" class="form-control" placeholder="Search...">
+                        <input type="text" name="search" class="form-control search-input" data-table-id="table-sheep" placeholder="Search...">
                     </div>
                     <div>
                         <a href="{{ route('sheep.create') }}" class="btn btn-primary ms-2">Tambah</a>
                     </div>
                 </div>
 
-                <div class="table-responsive">
+                <div class="table-responsive" id="table-sheep">
                     <table class="table rounded-3 overflow-hidden">
                         <thead class="table-primary text-white">
                             <tr>

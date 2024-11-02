@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\InitialAssessmentController;
-use App\Http\Controllers\RadiologyController;
-use App\Http\Controllers\SheepController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\VitalSignController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\InitialAssessmentController;
+use App\Http\Controllers\Admin\RadiologyController;
+use App\Http\Controllers\Admin\SheepController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VitalSignController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,13 +20,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AuthController::class, 'index']);
-Route::post('/auth', [AuthController::class, 'auth'])->name('login');
+Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::resource('/sheep', SheepController::class);
-Route::resource('/assessment', InitialAssessmentController::class);
-Route::resource('/vital-sign', VitalSignController::class);
-Route::resource('/radiology', RadiologyController::class);
-Route::resource('/user', UserController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/sheep', SheepController::class);
+    Route::resource('/assessment', InitialAssessmentController::class);
+
+    Route::resource('/vital-sign', VitalSignController::class);
+    Route::get('/vital-sign/create/{id}', [VitalSignController::class, 'create'])->name('vitalsign.create');
+    
+    Route::resource('/radiology', RadiologyController::class);
+    Route::resource('/user', UserController::class);
+});

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IS-USG Domba</title>
-  {{-- <link rel="shortcut icon" type="image/png" href="../assets/images/logos/seodashlogo.png" /> --}}
+  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/seodashlogo.png') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="{{ asset('assets/css/select2.css') }}">
@@ -28,6 +28,7 @@
 
     </div>
   </div>
+  <script src="{{ asset('assets/js/search.js') }}"></script>
   <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>

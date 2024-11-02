@@ -19,7 +19,7 @@ class InitialAssessmentController extends Controller {
         
         return view('pages.assessment.assessment', [
             'title' => 'Pemeriksaan Awal',
-            'assessments' => InitialAssessment::paginate(8)
+            'assessments' => InitialAssessment::orderBy('created_at', 'desc')->paginate(10)
         ]);
     }
 

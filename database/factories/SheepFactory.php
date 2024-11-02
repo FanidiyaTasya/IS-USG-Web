@@ -18,7 +18,7 @@ class SheepFactory extends Factory
     public function definition(): array {
         return [
             'sheep_name' => $this->faker->unique()->name,
-            'sheep_birth' => $this->faker->date(),
+            'sheep_birth' => $this->faker->dateTimeBetween('2020-01-01', Carbon::now())->format('Y-m-d'),
             // 'sheep_type' => $this->faker->randomElement(['Induk', 'Anak']),
             'sheep_gender' => $this->faker->randomElement(['Betina', 'Jantan']),
             'created_at' => Carbon::now(),

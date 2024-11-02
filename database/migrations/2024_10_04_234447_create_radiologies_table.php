@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void {
         Schema::create('radiologies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assessment_id')->constrained('initial_assessments');
+            $table->foreignId('assessment_id')->constrained('initial_assessments')->onDelete('cascade')->onUpdate('cascade');
             $table->string('ultrasound_image');
             $table->integer('gestational_age')->unsigned()->nullable();;
             $table->date('est_birth')->nullable();

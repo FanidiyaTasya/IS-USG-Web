@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void {
         Schema::create('vital_signs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assessment_id')->constrained('initial_assessments');
+            $table->foreignId('assessment_id')->constrained('initial_assessments')->onDelete('cascade')->onUpdate('cascade');
             $table->float('temperature', 4, 1);
             $table->integer('heart_rate')->unsigned();
             $table->integer('respiratory_rate')->unsigned();

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 150);
             $table->string('email', 100)->unique();
             $table->string('password', 100);
+            $table->text('photo')->nullable();
             $table->enum('role', ['Admin', 'Karyawan'])->default('Karyawan');
         });
     }

@@ -2,9 +2,9 @@
 <aside class="left-sidebar">
   <!-- Sidebar scroll-->
   <div>
-    <div class="brand-logo d-flex align-items-center justify-content-between" style="padding-left: 30px;">
+    <div class="brand-logo d-flex align-items-center justify-content-between" style="padding-left: 70px;">
       <a href="/dashboard" class="text-nowrap logo-img">
-          <img src="{{ asset('assets/images/logos/logo-gmf.png') }}" style="max-width: 100px; margin-top: 10px;"/>
+          <img src="{{ asset('assets/images/logos/gmf-farm.png') }}" style="max-width: 100px; margin-top: 20px;"/>
       </a>
       <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
           <i class="ti ti-x fs-8"></i>

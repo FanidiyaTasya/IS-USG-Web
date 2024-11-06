@@ -22,6 +22,7 @@ class SheepRequest extends FormRequest {
             'sheep_name' => 'required',
             'sheep_birth' => 'required|date',
             'sheep_gender' => 'required',
+            'sheep_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 
@@ -31,6 +32,9 @@ class SheepRequest extends FormRequest {
             'sheep_birth.required' => 'Tanggal lahir harus diisi.',
             'sheep_birth.date' => 'Format tanggal tidak valid.',
             'sheep_gender.required' => 'Jenis kelamin harus dipilih.',
+            'sheep_photo.image' => 'Foto domba harus berupa file gambar.',
+            'sheep_photo.mimes' => 'Foto domba harus berformat jpeg, png, atau jpg.',
+            'sheep_photo.max' => 'Foto domba tidak boleh lebih dari 2MB.',
         ];
     }
 }

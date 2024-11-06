@@ -18,7 +18,7 @@
 
         <div class="col-lg-6 col-xl-5 col-xxl-4 d-lg-block d-none">
           <div class="auth-left-bg min-vh-100 bg-body row justify-content-center align-items-center p-5">
-            <img src="{{ asset('assets/images/sheep/sheep.jpeg') }}"/>
+            <img src="{{ asset('assets/images/sheep/sheep-auth.jpeg') }}"/>
           </div>
         </div>
         

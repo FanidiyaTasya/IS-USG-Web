@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SheepRequest;
 use App\Models\Sheep;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SheepController extends Controller {
@@ -35,12 +37,14 @@ class SheepController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
-        Sheep::create([
-            'sheep_name' => $request->sheep_name,
-            'sheep_birth' => $request->sheep_birth,
-            'sheep_gender' => $request->sheep_gender,
-        ]);
+    public function store(SheepRequest $request) {
+        $validatedData = $request->validated();
+        
+        if ($request->hasFile('sheep_photo')) {
+            $validatedData['sheep_photo'] = $request->file('sheep_photo')->store('sheep_photos', 'public');
+        }
+
+        Sheep::create($validatedData);
         Alert::success('Berhasil!', 'Data Domba berhasil disimpan.');
         return redirect('/sheep');
     }
@@ -68,12 +72,17 @@ class SheepController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sheep $sheep) {
-        $sheep->update([
-            'sheep_name' => $request->sheep_name,
-            'sheep_birth' => $request->sheep_birth,
-            'sheep_type' => $request->sheep_type,
-        ]);
+    public function update(SheepRequest $request, Sheep $sheep) {
+        $validatedData = $request->validated();
+
+        if ($request->hasFile('sheep_photo')) {          
+            if ($sheep->sheep_photo) {
+                Storage::disk('public')->delete($sheep->sheep_photo);
+            }
+            $validatedData['sheep_photo'] = $request->file('sheep_photo')->store('sheep_photos', 'public');
+        }
+    
+        $sheep->update($validatedData);
         Alert::success('Berhasil!', 'Data Domba berhasil diubah.');
         return redirect('/sheep');
     }
@@ -82,7 +91,11 @@ class SheepController extends Controller {
      * Remove the specified resource from storage.
      */
     public function destroy(Sheep $sheep) {
-        Sheep::destroy($sheep->id);
+        if ($sheep->sheep_photo) {
+            Storage::disk('public')->delete($sheep->sheep_photo);
+        }    
+        $sheep->delete();
+
         Alert::success('Berhasil!', 'Data Domba berhasil dihapus.');
         return redirect('/sheep');
     }

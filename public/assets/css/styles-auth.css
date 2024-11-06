@@ -40308,7 +40308,7 @@ body .connect-sorting-content {
 .auth-left-bg {
     /* background: linear-gradient(97.21deg, #3c66fb 1.42%, #1447fa 101.47%); */
     position: relative;
-    background-image: url('../../assets/images/sheep/sheep.jpeg');
+    background-image: url('../../assets/images/sheep/sheep-auth.jpeg');
     background-position: center;
     background-size: cover;
 }

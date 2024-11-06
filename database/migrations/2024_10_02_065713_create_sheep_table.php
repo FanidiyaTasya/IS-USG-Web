@@ -17,6 +17,7 @@ return new class extends Migration
             // $table->string('sheep_age');
             // $table->enum('sheep_type', ['Induk', 'Anak']);
             $table->enum('sheep_gender', ['Betina', 'Jantan']);
+            $table->text('sheep_photo')->nullable();
             $table->timestamps();
         });
     }

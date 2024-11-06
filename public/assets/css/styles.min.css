@@ -16958,3 +16958,21 @@ ul {
 .timeline-widget .timeline-item .timeline-badge.badge-primary {
   border: 2px solid #697565;
 }
+
+.fixed-img {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+}
+
+.fixed-img-create {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.dropdown-top-right {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}

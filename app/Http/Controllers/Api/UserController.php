@@ -15,7 +15,7 @@ class UserController extends Controller {
         
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            $token = $user->createToken('auth_token')->plainTextToken;
+            $token = $user->createToken('token')->plainTextToken;
             
             return response()->json([
                 'message' => 'Successfully logged in',

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SheepController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,10 @@ Route::post('/login', [UserController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/get-user', [UserController::class, 'getUser']);
+    
+    Route::get('/sheep', [SheepController::class, 'index']);
+    Route::get('/sheep/{id}', [SheepController::class, 'show']);
+    Route::post('/sheep/store', [SheepController::class, 'store']);
 
     Route::post('/logout', [UserController::class, 'logout']);
 });

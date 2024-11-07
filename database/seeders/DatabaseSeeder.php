@@ -4,10 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\InitialAssessment;
-use App\Models\Sheep;
 use App\Models\User;
-use App\Models\VitalSign;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -37,8 +34,9 @@ class DatabaseSeeder extends Seeder {
             'role' => 'Karyawan'
         ]);
 
-        Sheep::factory()->count(5)->create();
-        InitialAssessment::factory()->count(5)->create();
-        VitalSign::factory()->count(5)->create();
+        // Sheep::factory()->count(5)->create();
+        // InitialAssessment::factory()->count(5)->create();
+        // VitalSign::factory()->count(5)->create();
+        // Radiology::factory()->count(5)->create();
     }
 }

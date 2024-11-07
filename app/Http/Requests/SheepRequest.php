@@ -19,6 +19,7 @@ class SheepRequest extends FormRequest {
      */
     public function rules(): array {
         return [
+            'id' => 'required',
             'sheep_name' => 'required',
             'sheep_birth' => 'required|date',
             'sheep_gender' => 'required',
@@ -28,6 +29,7 @@ class SheepRequest extends FormRequest {
 
     public function messages(): array {
         return [
+            'id.required' => 'Id harus diisi.',
             'sheep_name.required' => 'Nama domba harus diisi.',
             'sheep_birth.required' => 'Tanggal lahir harus diisi.',
             'sheep_birth.date' => 'Format tanggal tidak valid.',

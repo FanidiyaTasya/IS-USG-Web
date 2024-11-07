@@ -35,7 +35,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-4">
                                         <label for="id" class="form-label">ID Domba</label>
-                                        <input type="text" name="id" id="id" class="form-control" value="{{ $id }}">
+                                        <input type="text" name="id" id="id" class="form-control" value="{{ $id }}" readonly>
                                     </div>
                                     <div class="mb-4">
                                         <label for="sheep_name" class="form-label">Nama Domba</label>

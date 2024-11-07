@@ -8,7 +8,7 @@
         </div>
         <div class="card-body p-4">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="card w-100 border position-relative overflow-hidden">
                         <div class="card-body">
                             <strong>Foto Domba</strong>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-8 d-flex align-items-stretch">
+                <div class="col-lg-7 d-flex align-items-stretch">
                     <div class="card w-100 border position-relative overflow-hidden">
                         <div class="card-body p-4">
                             <div class="mb-4">
@@ -46,7 +46,6 @@
                     </div>
                 </div>
 
-                <!-- Card Barcode Domba - Ditempatkan di Bawah -->
                 <div class="col-12">
                     <div class="card w-100 border position-relative overflow-hidden">
                         <div class="card-body p-4 text-center">

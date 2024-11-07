@@ -20,10 +20,11 @@ class RadiologyRequest extends FormRequest {
     public function rules(): array {
         return [
             'assessment_id' => 'required|exists:initial_assessments,id',
-            'ultrasound_image' => 'required|string|max:255',
+            'ultrasound_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'gestational_age' => 'nullable|integer|min:0',
             'est_birth' => 'nullable|date',
             'pregnancy_status' => 'required|in:Hamil,Tidak Hamil',
+            'additional_info' => 'nullable|string'
         ];
     }
 
@@ -31,9 +32,9 @@ class RadiologyRequest extends FormRequest {
         return [
             'assessment_id.required' => 'ID assessment harus diisi.',
             'assessment_id.exists' => 'Assessment tidak ditemukan.',
-            'ultrasound_image.required' => 'Gambar ultrasound harus diisi.',
-            'ultrasound_image.string' => 'Gambar ultrasound harus berupa string.',
-            'ultrasound_image.max' => 'Gambar ultrasound tidak boleh lebih dari 255 karakter.',
+            'ultrasound_image.image' => 'File harus berupa gambar.',
+            'ultrasound_image.mimes' => 'Gambar ultrasound harus berformat: jpeg, png, atau jpg.',
+            'ultrasound_image.max' => 'Ukuran gambar ultrasound tidak boleh lebih dari 2MB.',
             'gestational_age.integer' => 'Usia gestasi harus berupa angka bulat.',
             'pregnancy_status.required' => 'Status kehamilan harus dipilih.',
             'pregnancy_status.in' => 'Status kehamilan harus salah satu dari: Hamil, Tidak Hamil.',

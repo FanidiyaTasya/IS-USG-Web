@@ -8,15 +8,14 @@
 
                 <div class="d-flex justify-content-end mb-3">
                     <div>
-                        <input type="text" name="search" class="form-control" placeholder="Search...">
+                        <input type="text" name="search" class="form-control search-input" data-table-id="table-radiology" placeholder="Search...">
                     </div>
-
                     <div>
-                        <button type="submit" class="btn btn-primary ms-2">Tambah</button>
+                        <a href="{{ route('radiology.create') }}" class="btn btn-primary ms-2">Tambah</a>
                     </div>
                 </div>
 
-                <div class="table-responsive">
+                <div class="table-responsive" id="table-radiology">
                     <table class="table rounded-3 overflow-hidden">
                         <thead class="table-primary text-white">
                         <tr>
@@ -24,65 +23,31 @@
                             <th>Tanggal Pemeriksaan</th>
                             <th>Nama Domba</th>
                             <th>Usia Kandungan</th>
-                            <th>Perkiraan Lahir</th>
+                            <th>Status Kehamilan</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Nigam</td>
-                            <td>Eichmann</td>
-                            <td>@Sonu</td>
-                            <td>50kg</td>
-                            <td>
-                                <button type="button" class="btn btn-info btn-sm me-2">
-                                    <iconify-icon icon="solar:pen-new-square-outline" class="fs-5"></iconify-icon>
-                                </button>
-                                <button type="button" class="btn btn-warning btn-sm me-2">
-                                    <iconify-icon icon="solar:eye-outline" class="fs-5"></iconify-icon>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <iconify-icon icon="solar:trash-bin-2-outline" class="fs-5"></iconify-icon>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Deshmukh</td>
-                            <td>Prohaska</td>
-                            <td>@Genelia</td>
-                            <td>40kg</td>
-                            <td>
-                                <button type="button" class="btn btn-info btn-sm me-2">
-                                    <iconify-icon icon="solar:pen-new-square-outline" class="fs-5"></iconify-icon>
-                                </button>
-                                <button type="button" class="btn btn-warning btn-sm me-2">
-                                    <iconify-icon icon="solar:eye-outline" class="fs-5"></iconify-icon>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <iconify-icon icon="solar:trash-bin-2-outline" class="fs-5"></iconify-icon>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Roshan</td>
-                            <td>Rogahn</td>
-                            <td>@Hritik</td>
-                            <td>30kg</td>
-                            <td>
-                                <button type="button" class="btn btn-info btn-sm me-2">
-                                    <iconify-icon icon="solar:pen-new-square-outline" class="fs-5"></iconify-icon>
-                                </button>
-                                <button type="button" class="btn btn-warning btn-sm me-2">
-                                    <iconify-icon icon="solar:eye-outline" class="fs-5"></iconify-icon>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <iconify-icon icon="solar:trash-bin-2-outline" class="fs-5"></iconify-icon>
-                                </button>
-                            </td>
-                        </tr>
+                            @foreach ($radiologies as $index => $rad)
+                            <tr>  
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ Carbon\Carbon::parse($rad->assessment->created_at)->format('d-m-Y H:i:s') }}</td>
+                                <td>{{ $rad->assessment->sheep->sheep_name }}</td>
+                                <td>{{ $rad->gestational_age }} minggu</td>
+                                <td>{{ $rad->pregnancy_status }}</td>
+                                <td>
+                                    <a href="{{ route('radiology.edit', $rad->id) }}" class="btn btn-info btn-sm me-2">
+                                        <iconify-icon icon="solar:pen-new-square-outline" class="fs-5"></iconify-icon>
+                                    </a>
+                                    <a href="{{ route('radiology.show', $rad->id) }}" class="btn btn-warning btn-sm me-2">
+                                        <iconify-icon icon="solar:eye-outline" class="fs-5"></iconify-icon>
+                                    </a>
+                                    <a href="{{ route('radiology.destroy', $rad->id) }}" class="btn btn-danger btn-sm" data-confirm-delete>
+                                        <iconify-icon icon="solar:trash-bin-2-outline" class="fs-5"></iconify-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -15,8 +15,9 @@ return new class extends Migration
             $table->foreignId('assessment_id')->constrained('initial_assessments')->onDelete('cascade')->onUpdate('cascade');
             $table->string('ultrasound_image');
             $table->integer('gestational_age')->unsigned()->nullable();;
-            $table->date('est_birth')->nullable();
+            // $table->date('est_birth')->nullable();
             $table->enum('pregnancy_status', ['Hamil', 'Tidak Hamil']);
+            $table->text('additional_info')->nullable();
             $table->timestamps();
         });
     }

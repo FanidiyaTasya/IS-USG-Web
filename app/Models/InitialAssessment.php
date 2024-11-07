@@ -9,6 +9,7 @@ class InitialAssessment extends Model {
     use HasFactory;
 
     protected $guarded = ['id'];
+    public $timestamps = true;
 
     public function sheep() {
         return $this->belongsTo(Sheep::class, 'sheep_id');

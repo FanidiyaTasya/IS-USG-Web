@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('respiratory_rate')->unsigned();
             $table->float('weight', 5, 2);
             $table->enum('status_condition', ['Sehat', 'Tidak Sehat']);
+            $table->text('additional_info')->nullable();
             $table->timestamps();
         });
     }

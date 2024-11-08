@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RadiologyRequest;
 use App\Models\InitialAssessment;
 use App\Models\Radiology;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RadiologyController extends Controller {
@@ -72,8 +73,15 @@ class RadiologyController extends Controller {
      * Update the specified resource in storage.
      */
     public function update(RadiologyRequest $request, Radiology $radiology) {
-        $radiology = Radiology::find($radiology->id);
-        $radiology->update($request->validated());
+        $validatedData = $request->validated();
+        
+        if ($request->hasFile('ultrasound_image')) {          
+            if ($radiology->ultrasound_image) {
+                Storage::disk('public')->delete($radiology->ultrasound_image);
+            }
+            $validatedData['ultrasound_image'] = $request->file('ultrasound_image')->store('ultrasound_images', 'public');
+        }
+        $radiology->update($validatedData);
 
         Alert::success('Berhasil!', 'Data Radiologi berhasil diubah.');
         return redirect('/radiology');
@@ -83,7 +91,11 @@ class RadiologyController extends Controller {
      * Remove the specified resource from storage.
      */
     public function destroy(Radiology $radiology) {
-        Radiology::destroy($radiology->id);
+        if ($radiology->ultrasound_image) {
+            Storage::disk('public')->delete($radiology->ultrasound_image);
+        }    
+        $radiology->delete();
+        
         Alert::success('Berhasil!', 'Data Radiologi berhasil dihapus.');
         return redirect('/radiology');
     }

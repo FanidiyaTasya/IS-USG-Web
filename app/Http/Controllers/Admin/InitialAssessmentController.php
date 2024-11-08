@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\InitialAssessmentRequest;
 use App\Models\InitialAssessment;
 use App\Models\Sheep;
 use Illuminate\Http\Request;
@@ -36,16 +37,8 @@ class InitialAssessmentController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
-        InitialAssessment::create([
-            'sheep_id' => $request->sheep_id,
-            'user_id' => $request->user_id,
-            'symptom_1' => $request->symptom_1,
-            'symptom_2' => $request->symptom_2,
-            'symptom_3' => $request->symptom_3,
-            'check_date' => $request->check_date,
-            'desc' => $request->desc,
-        ]);
+    public function store(InitialAssessmentRequest $request) {
+        InitialAssessment::create($request->validated());
         Alert::success('Berhasil!', 'Data Pemeriksaan Awal berhasil disimpan.');
         return redirect('/assessment');
     }
@@ -74,19 +67,13 @@ class InitialAssessmentController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id) {
-        $validated = $request->validate([
-            'sheep_id' => 'required|exists:sheep,id',
-            'symptom_1' => 'required|string|max:255',
-            'symptom_2' => 'nullable|string|max:255',
-            'symptom_3' => 'nullable|string|max:255',
-            'check_date' => 'required|date',
-            'desc' => 'nullable|string',
-        ]);    
-        $initialAssessment = InitialAssessment::find($id);
+    public function update(InitialAssessmentRequest $request, $id) {
+        $validated = $request->safe()->except(['sheep_id', 'user_id']);
+        
+        $initialAssessment = InitialAssessment::findOrFail($id);
         $initialAssessment->update($validated);
-    
-        Alert::success('Success!', 'Assessment updated successfully');
+        
+        Alert::success('Success!', 'Data Pemeriksaan Awal berhasil diubah.');
         return redirect()->route('assessment.index');
     }
 
@@ -97,7 +84,7 @@ class InitialAssessmentController extends Controller {
         $initialAssessment = InitialAssessment::find($id);
         $initialAssessment->delete();
 
-        Alert::success('Berhasil!', 'Data pemeriksaan awal berhasil dihapus.');
+        Alert::success('Berhasil!', 'Data pemeriksaan Awal berhasil dihapus.');
         return redirect()->route('assessment.index')->with('success', 'Data pemeriksaan awal berhasil dihapus.');
     }
 }

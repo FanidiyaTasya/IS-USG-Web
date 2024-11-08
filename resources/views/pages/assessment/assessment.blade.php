@@ -8,10 +8,10 @@
 
             <div class="d-flex justify-content-end mb-3">
                 <div>
-                    <input type="text" name="search" class="form-control search-input" placeholder="Search...">
+                    <input type="text" name="search" class="form-control search-input" data-table-id="table-assessment" placeholder="Search...">
                 </div>
                 <div>
-                    <a href="/assessment/create" class="btn btn-primary ms-2">Tambah</a>
+                    <a href="{{ route('assessment.create') }}" class="btn btn-primary ms-2">Tambah</a>
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                         @foreach ($assessments as $index => $assessment)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ Carbon\Carbon::parse($assessment->check_date)->format('d-m-Y') }}</td>
+                            <td>{{ Carbon\Carbon::parse($assessment->created_at)->format('d-m-Y H:i:s') }}</td>
                             <td>{{ $assessment->sheep_id }}</td>
                             <td>{{ $assessment->sheep->sheep_name }}</td>
                             <td>{{ $assessment->user->name }}</td>

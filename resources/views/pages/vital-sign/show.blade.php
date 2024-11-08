@@ -10,13 +10,23 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <strong>ID Pemeriksaan Awal:</strong>
-                        <p>{{ $vitalSign->assessment_id }}</p>
+                        <strong>ID Domba:</strong>
+                        <p>{{ $vitalSign->assessment->sheep_id }}</p>
                     </div>
                     <div class="mb-4">
                         <strong>Nama Domba:</strong>
                         <p>{{ $vitalSign->assessment->sheep->sheep_name }}</p>
                     </div>
+                    <div class="mb-4">
+                        <strong>Nama Assessor:</strong>
+                        <p>{{ $vitalSign->assessment->user->name }}</p>
+                    </div>
+                    <div class="mb-4">
+                        <strong>Tanggal Pemeriksaan:</strong>
+                        <p>{{ \Carbon\Carbon::parse($vitalSign->assessment->created_at)->format('d F Y | H:i:s') }}</p>
+                    </div> 
+                </div>
+                <div class="col-lg-6">
                     <div class="mb-4">
                         <strong>Suhu:</strong>
                         <p>{{ $vitalSign->temperature }} °C</p>
@@ -25,8 +35,6 @@
                         <strong>Denyut Jantung:</strong>
                         <p>{{ $vitalSign->heart_rate }} bpm</p>
                     </div>
-                </div>
-                <div class="col-lg-6">
                     <div class="mb-4">
                         <strong>Laju Pernapasan:</strong>
                         <p>{{ $vitalSign->respiratory_rate }} per menit</p>
@@ -40,8 +48,8 @@
                         <p>{{ $vitalSign->status_condition }}</p>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="d-flex align-items-center gap-3">
+                <div class="col-12 mt-4">
+                    <div class="d-flex justify-content-end">
                         <a href="/vital-sign" class="btn btn-primary">Kembali</a>
                     </div>
                 </div>

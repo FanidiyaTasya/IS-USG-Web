@@ -11,7 +11,8 @@
           <input type="text" name="search" class="form-control search-input" data-table-id="table-vitalsign" placeholder="Search...">
         </div>
         <div>
-            <a href="{{ route('vitalsign.create', ['id' => $assessment->id]) }}" class="btn btn-primary ms-2">Tambah</a>
+            {{-- <a href="{{ route('vitalsign.create', ['id' => $assessment->id]) }}" class="btn btn-primary ms-2">Tambah</a> --}}
+            <a href="{{ route('vital-sign.create') }}" class="btn btn-primary ms-2">Tambah</a>
         </div>
       </div>
       
@@ -21,12 +22,13 @@
             <tr>
                 <th>No</th>
                 <th>Tanggal Periksa</th>
+                <th>ID Domba</th>
                 <th>Nama Domba</th>
-                <th>Suhu</th>
+                {{-- <th>Suhu</th>
                 <th>Denyut jantung</th>
                 <th>Laju Pernapasan</th>
-                <th>Berat</th>
-                <th>Nama Assesor</th>
+                <th>Berat</th> --}}
+                <th>Status Kesehatan</th>
                 <th>Aksi</th>
             </tr>
           </thead>
@@ -34,12 +36,13 @@
             @foreach ($vitalsign as $index => $vs)
             <tr>
                 <td style="text-align: center;">{{ $index + 1 }}</td>
-                <td>{{ Carbon\Carbon::parse($vs->assessment->check_date)->format('d-m-Y') }}</td>
+                <td>{{ Carbon\Carbon::parse($vs->assessment->created_at)->format('d-m-Y H:i:s') }}</td>
+                <td>{{ $vs->assessment->sheep_id }}</td>
                 <td>{{ $vs->assessment->sheep->sheep_name }}</td>
-                <td style="text-align: center;">{{ $vs->temperature }} C</td>
+                {{-- <td style="text-align: center;">{{ $vs->temperature }} C</td>
                 <td style="text-align: center;">{{ $vs->heart_rate }}</td>
                 <td style="text-align: center;">{{ $vs->respiratory_rate }}</td>
-                <td>{{ $vs->weight }}kg</td>
+                <td>{{ $vs->weight }}kg</td> --}}
                 <td>{{ $vs->status_condition }}</td>
                 <td>
                   <a href="{{ route('vital-sign.edit', $vs->id) }}" class="btn btn-info btn-sm me-2">

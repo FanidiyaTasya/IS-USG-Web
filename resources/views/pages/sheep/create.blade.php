@@ -76,7 +76,7 @@
                                 <div class="col-12">
                                     <div class="d-flex align-items-center gap-3">
                                         <button type="submit" class="btn btn-primary ms-auto">Simpan</button>
-                                        <button class="btn bg-danger-subtle text-danger">Cancel</button>
+                                        {{-- <button class="btn bg-danger-subtle text-danger">Cancel</button> --}}
                                     </div>
                                 </div>
                             </div>

@@ -41,6 +41,7 @@ document.getElementById('search').addEventListener('input', function() {
         let text = item.textContent.toLowerCase();
         if (text.includes(filter)) {
             item.style.display = '';
+        } else {
             item.style.display = 'none';
         }
     });

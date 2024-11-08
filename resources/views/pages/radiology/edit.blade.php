@@ -29,15 +29,25 @@
                             <div class="col-lg-6 mb-4">
                                 <div class="mb-4">
                                     <label for="gestational_age" class="form-label">Usia Kehamilan (in weeks)</label>
-                                    <input type="number" class="form-control" id="gestational_age" name="gestational_age" min="0" step="1" value="{{ $radiology->gestational_age }}">
+                                    <input type="number" class="form-control @error('gestational_age') is-invalid @enderror" id="gestational_age" name="gestational_age" min="0" step="1" value="{{ old('gestational_age', $radiology->gestational_age) }}">
+                                    @error('gestational_age')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-4">
                                     <label for="pregnancy_status" class="form-label">Status Kehamilan</label>
-                                    <select class="form-select" id="pregnancy_status" name="pregnancy_status">
+                                    <select class="form-select @error('pregnancy_status') is-invalid @enderror" id="pregnancy_status" name="pregnancy_status">
                                         <option selected disabled>Pilih Status</option>
-                                        <option value="Hamil" {{ $radiology->pregnancy_status == 'Hamil' ? 'selected' : '' }}>Hamil</option>
-                                        <option value="Tidak Hamil" {{ $radiology->pregnancy_status == 'Tidak Hamil' ? 'selected' : '' }}>Tidak Hamil</option>
+                                        <option value="Hamil" {{ old('pregnancy_status', $radiology->pregnancy_status) == 'Hamil' ? 'selected' : '' }}>Hamil</option>
+                                        <option value="Tidak Hamil" {{ old('pregnancy_status', $radiology->pregnancy_status) == 'Tidak Hamil' ? 'selected' : '' }}>Tidak Hamil</option>
                                     </select>
+                                    @error('pregnancy_status')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -62,7 +72,6 @@
                         <div class="col-12">
                             <div class="d-flex align-items-center gap-3">
                                 <button type="submit" class="btn btn-primary ms-auto">Simpan</button>
-                                <a href="{{ route('radiology.index') }}" class="btn bg-danger-subtle text-danger">Batal</a>
                             </div>
                         </div>
                     </form>

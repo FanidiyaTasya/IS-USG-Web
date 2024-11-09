@@ -30,10 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('sheep/{id}/download', [SheepController::class, 'downloadQrCode'])->name('sheep.download');
 
     Route::resource('/assessment', InitialAssessmentController::class);
-
     Route::resource('/vital-sign', VitalSignController::class);
-    // Route::get('/vital-sign/create/{id}', [VitalSignController::class, 'create'])->name('vitalsign.create');
-    
     Route::resource('/radiology', RadiologyController::class);
     Route::resource('/user', UserController::class);
 });

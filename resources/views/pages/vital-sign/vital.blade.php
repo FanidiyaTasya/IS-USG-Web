@@ -11,7 +11,6 @@
           <input type="text" name="search" class="form-control search-input" data-table-id="table-vitalsign" placeholder="Search...">
         </div>
         <div>
-            {{-- <a href="{{ route('vitalsign.create', ['id' => $assessment->id]) }}" class="btn btn-primary ms-2">Tambah</a> --}}
             <a href="{{ route('vital-sign.create') }}" class="btn btn-primary ms-2">Tambah</a>
         </div>
       </div>

@@ -29,7 +29,7 @@ class RadiologyController extends Controller {
     public function create() {
         return view('pages.radiology.create', [
             'title' => 'Tambah Data Radiologi',
-            'assessments' => InitialAssessment::orderBy('created_at', 'desc')->get()
+            'ass' => InitialAssessment::latest()->first()
         ]);
     }
 

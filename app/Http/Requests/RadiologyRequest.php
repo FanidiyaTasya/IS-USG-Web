@@ -20,7 +20,7 @@ class RadiologyRequest extends FormRequest {
     public function rules(): array {
         $rules = [
             'ultrasound_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'gestational_age' => 'nullable|integer|min:0',
+            // 'gestational_age' => 'nullable|integer|min:0',
             'pregnancy_status' => 'required|in:Hamil,Tidak Hamil',
             'additional_info' => 'nullable|string'
         ];
@@ -38,7 +38,7 @@ class RadiologyRequest extends FormRequest {
             'ultrasound_image.image' => 'File harus berupa gambar.',
             'ultrasound_image.mimes' => 'Gambar ultrasound harus berformat: jpeg, png, atau jpg.',
             'ultrasound_image.max' => 'Ukuran gambar ultrasound tidak boleh lebih dari 2MB.',
-            'gestational_age.integer' => 'Usia Kandungan harus berupa angka bulat.',
+            // 'gestational_age.integer' => 'Usia Kandungan harus berupa angka bulat.',
             'pregnancy_status.required' => 'Status kehamilan harus dipilih.',
             'pregnancy_status.in' => 'Status kehamilan harus salah satu dari: Hamil, Tidak Hamil.',
         ];

@@ -13,8 +13,8 @@ return new class extends Migration
         Schema::create('radiologies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('assessment_id')->constrained('initial_assessments')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('ultrasound_image');
-            $table->integer('gestational_age')->unsigned()->nullable();;
+            $table->string('ultrasound_image')->nullable();
+            // $table->integer('gestational_age')->unsigned()->nullable();;
             // $table->date('est_birth')->nullable();
             $table->enum('pregnancy_status', ['Hamil', 'Tidak Hamil']);
             $table->text('additional_info')->nullable();

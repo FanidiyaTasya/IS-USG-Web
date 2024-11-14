@@ -10,7 +10,7 @@ use App\Models\Sheep;
 class SheepController extends Controller {
     
     public function index() {
-        $sheep = Sheep::orderBy('created_at', 'desc');
+        $sheep = Sheep::orderBy('created_at', 'desc')->get();
         return response()->json([
             'success' => true,
             'data' => SheepResource::collection($sheep),

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class RadiologyController extends Controller {
     
     public function index() {
-        $radiology = Radiology::orderBy('created_at', 'desc');
+        $radiology = Radiology::orderBy('created_at', 'desc')->get();
         return response()->json([
             'success' => true,
             'data' => RadiologyResource::collection($radiology),

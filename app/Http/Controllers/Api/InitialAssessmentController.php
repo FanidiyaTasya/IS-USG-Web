@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class InitialAssessmentController extends Controller {
     
     public function index() {
-        $assessment = InitialAssessment::orderBy('created_at', 'desc');
+        $assessment = InitialAssessment::orderBy('created_at', 'desc')->get();
         return response()->json([
             'success' => true,
             'data' => InitialAssessmentResource::collection($assessment),
@@ -18,7 +18,7 @@ class InitialAssessmentController extends Controller {
     }
 
     public function show($id) {
-        $assessment = InitialAssessment::findOrFail($id);
+        $assessment = InitialAssessment::findOrFail($id)->get();
         return response()->json([
             'success' => true,
             'data' => new InitialAssessmentResource($assessment),

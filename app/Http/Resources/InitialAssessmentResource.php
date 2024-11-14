@@ -20,8 +20,7 @@ class InitialAssessmentResource extends JsonResource
             'symptom_1' => $this->symptom_1,
             'symptom_2' => $this->symptom_2,
             'symptom_3' => $this->symptom_3,
-            'check_date' => $this->check_date,
-            'desc' => $this->desc,
+            'additional_info' => $this->desc,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

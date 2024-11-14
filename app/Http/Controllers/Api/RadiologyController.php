@@ -3,24 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\RadiologyResource;
 use App\Models\Radiology;
 use Illuminate\Http\Request;
 
 class RadiologyController extends Controller {
     
     public function index() {
-        $radiology = Radiology::all();
+        $radiology = Radiology::orderBy('created_at', 'desc');
         return response()->json([
             'success' => true,
-            'data' => $radiology,
+            'data' => RadiologyResource::collection($radiology),
         ], 200);
     }
 
     public function show($id) {
-        $radiology = Radiology::find($id);
+        $radiology = Radiology::findOrFail($id);
         return response()->json([
             'success' => true,
-            'data' => $radiology,
+            'data' => new RadiologyResource($radiology),
         ], 200);
     }
 }

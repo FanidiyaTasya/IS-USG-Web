@@ -17,11 +17,8 @@ class RadiologyResource extends JsonResource
             'id' => $this->id,
             'assessment_id' => $this->assessment_id,
             'ultrasound_image' => $this->ultrasound_image,
-            'gestational_age' => $this->gestational_age,
-            'est_birth' => $this->est_birth,
             'pregnancy_status' => $this->pregnancy_status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'additional_info' => $this->additional_info,
         ];
     }
 }

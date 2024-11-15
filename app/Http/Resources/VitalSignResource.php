@@ -22,6 +22,8 @@ class VitalSignResource extends JsonResource
             'weight' => $this->weight,
             'additional_info' => $this->additional_info,
             'status_condition' => $this->status_condition,
+            'sheep_id' => $this->assessment->sheep->id,
+            'sheep_name' => $this->assessment->sheep->sheep_name,
         ];
     }
 }

@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 class VitalSignController extends Controller {
     
     public function index() {
-        $vital = VitalSign::orderBy('created_at', 'desc')->get();
+        $vital = VitalSign::with('assessment.sheep')
+                ->orderBy('created_at', 'desc')
+                ->get();
+
         return response()->json([
             'success' => true,
             'data' => VitalSignResource::collection($vital),

@@ -24,6 +24,7 @@ class VitalSignResource extends JsonResource
             'status_condition' => $this->status_condition,
             'sheep_id' => $this->assessment->sheep->id,
             'sheep_name' => $this->assessment->sheep->sheep_name,
+            'created_at' => $this->assessment->created_at,
         ];
     }
 }

@@ -19,6 +19,9 @@ class RadiologyResource extends JsonResource
             'ultrasound_image' => $this->ultrasound_image,
             'pregnancy_status' => $this->pregnancy_status,
             'additional_info' => $this->additional_info,
+            'sheep_id' => $this->assessment->sheep->id,
+            'sheep_name' => $this->assessment->sheep->sheep_name,
+            'created_at' => $this->assessment->created_at,
         ];
     }
 }

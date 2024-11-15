@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class VitalSignController extends Controller {
     
     public function index() {
-        $vital = VitalSign::with('assessment.sheep')
+        $vital = VitalSign::with('assessment')
                 ->orderBy('created_at', 'desc')
                 ->get();
 

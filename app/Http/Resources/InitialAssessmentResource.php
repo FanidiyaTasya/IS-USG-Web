@@ -23,6 +23,7 @@ class InitialAssessmentResource extends JsonResource
             'additional_info' => $this->desc,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'sheep_name' => $this->sheep->sheep_name,
         ];
     }
 }

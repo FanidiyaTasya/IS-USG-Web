@@ -19,9 +19,12 @@ class InitialAssessmentRequest extends FormRequest {
      */
     public function rules(): array {
         $rules = [
-            'symptom_1' => 'required|string|max:100',
-            'symptom_2' => 'required|string|max:100',
-            'symptom_3' => 'required|string|max:100',
+            // 'symptom_1' => 'required|string|max:100',
+            // 'symptom_2' => 'required|string|max:100',
+            // 'symptom_3' => 'required|string|max:100',
+            'hoof' => 'required',
+            'eye' => 'required',
+            'wool' => 'required',
             'additional_info' => 'nullable|string',
         ];
     
@@ -37,9 +40,9 @@ class InitialAssessmentRequest extends FormRequest {
             'sheep_id.required' => 'ID domba harus diisi.',
             'user_id.required' => 'ID pengguna harus diisi.',
             'user_id.exists' => 'Pengguna tidak ditemukan.',
-            'symptom_1.required' => 'Gejala pertama harus diisi.',
-            'symptom_2.required' => 'Gejala kedua harus diisi.',
-            'symptom_3.required' => 'Gejala ketiga harus diisi.',
+            'hoof.required' => 'Kondisi kuku harus diisi.',
+            'eye.required' => 'Kondisi mata harus diisi.',
+            'wool.required' => 'Kondisi bulu harus diisi.',
         ];
     }
 }

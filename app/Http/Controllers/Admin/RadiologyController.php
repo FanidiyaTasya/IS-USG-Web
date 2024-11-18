@@ -19,7 +19,7 @@ class RadiologyController extends Controller {
         confirmDelete($title, $text);
 
         return view('pages.radiology.radiology', [
-            'radiologies' => Radiology::all()
+            'radiologies' => Radiology::orderBy('created_at', 'desc')->paginate(10)
         ]);
     }
 

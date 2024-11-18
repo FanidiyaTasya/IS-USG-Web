@@ -79,7 +79,7 @@
       <div class="card-body p-4">
           <div class="col-12">
               <div class="d-flex align-items-center gap-3">
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
               </div>
           </div>
       </div>

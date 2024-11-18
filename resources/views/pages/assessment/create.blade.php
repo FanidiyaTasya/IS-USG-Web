@@ -37,33 +37,59 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-lg-6 mb-4">
-                                <div class="mb-4">
-                                    <label for="symptom_1" class="form-label">Gejala 1</label>
-                                    <input type="text" name="symptom_1" id="symptom_1" value="{{ old('symptom_1') }}" class="form-control @error('symptom_1') is-invalid @enderror">
-                                    @error('symptom_1')
+                                <div class="mb-4"> 
+                                    <label for="hoof" class="form-label">Kuku</label>
+                                    <select name="hoof" id="hoof" class="form-control @error('hoof') is-invalid @enderror">
+                                        <option selected disabled>Pilih Kondisi Kuku</option>
+                                        <option value="normal" {{ old('hoof') == 'normal' ? 'selected' : '' }}>Normal</option>
+                                        <option value="bengkak" {{ old('hoof') == 'bengkak' ? 'selected' : '' }}>Bengkak</option>
+                                        <option value="patah" {{ old('hoof') == 'patah' ? 'selected' : '' }}>Patah</option>
+                                        <option value="terinfeksi" {{ old('hoof') == 'terinfeksi' ? 'selected' : '' }}>Terinfeksi</option>
+                                        <option value="panjang" {{ old('hoof') == 'panjang' ? 'selected' : '' }}>Panjang</option>
+                                        <option value="lembek" {{ old('hoof') == 'lembek' ? 'selected' : '' }}>Lembek</option>
+                                        <option value="pecah" {{ old('hoof') == 'pecah' ? 'selected' : '' }}>Pecah</option>
+                                    </select>
+                                    @error('hoof')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
                                 </div>
+                                
                                 <div class="mb-4">
-                                    <label for="symptom_2" class="form-label">Gejala 2</label>
-                                    <input type="text" name="symptom_2" id="symptom_2" value="{{ old('symptom_2') }}" class="form-control @error('symptom_2') is-invalid @enderror">
-                                    @error('symptom_2')
+                                    <label for="eye" class="form-label">Mata</label>
+                                    <select name="eye" id="eye" class="form-control @error('eye') is-invalid @enderror">
+                                        <option selected disabled>Pilih Kondisi Mata</option>
+                                        <option value="normal" {{ old('eye') == 'normal' ? 'selected' : '' }}>Normal</option>
+                                        <option value="merah" {{ old('eye') == 'merah' ? 'selected' : '' }}>Merah</option>
+                                        <option value="berair" {{ old('eye') == 'berair' ? 'selected' : '' }}>Berair</option>
+                                        <option value="kuning" {{ old('eye') == 'kuning' ? 'selected' : '' }}>Kuning</option>
+                                        <option value="pucat" {{ old('eye') == 'pucat' ? 'selected' : '' }}>Pucat</option>
+                                        <option value="bengkak" {{ old('eye') == 'bengkak' ? 'selected' : '' }}>Bengkak</option>
+                                        <option value="terinfeksi" {{ old('eye') == 'terinfeksi' ? 'selected' : '' }}>Terinfeksi</option>
+                                    </select>
+                                    @error('eye')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
                                 </div>
+                                
                                 <div class="mb-4">
-                                    <label for="symptom_3" class="form-label">Gejala 3</label>
-                                    <input type="text" name="symptom_3" id="symptom_3" value="{{ old('symptom_3') }}" class="form-control @error('symptom_3') is-invalid @enderror">
-                                    @error('symptom_3')
+                                    <label for="wool" class="form-label">Bulu</label>
+                                    <select name="wool" id="wool" class="form-control @error('wool') is-invalid @enderror">
+                                        <option selected disabled>Pilih Kondisi Bulu</option>
+                                        <option value="normal" {{ old('wool') == 'normal' ? 'selected' : '' }}>Normal</option>
+                                        <option value="kering" {{ old('wool') == 'kering' ? 'selected' : '' }}>Kering</option>
+                                        <option value="rontok" {{ old('wool') == 'rontok' ? 'selected' : '' }}>Rontok</option>
+                                        <option value="berjamur" {{ old('wool') == 'berjamur' ? 'selected' : '' }}>Berjamur</option>
+                                    </select>
+                                    @error('wool')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
-                                </div>
+                                </div>                                
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-4">

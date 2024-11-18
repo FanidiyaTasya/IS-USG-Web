@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder {
@@ -27,16 +28,52 @@ class DatabaseSeeder extends Seeder {
             'role' => 'Admin'
         ]);
 
-        User::create([
-            'name' => 'Karyawan User',
-            'email' => 'karyawan1@gmail.com',
-            'password' => Hash::make('password'),
-            'role' => 'Karyawan'
+        DB::table('users')->insert([
+            [
+                'name' => 'Karyawan User',
+                'email' => 'karyawan@gmail.com',
+                'password' => Hash::make('password'),
+                'role' => 'Karyawan'
+            ],
+            [
+                'name' => 'Tono Kurniawan',
+                'email' => 'karyawan1@gmail.com',
+                'password' => Hash::make('password'),
+                'role' => 'Karyawan'
+            ]
         ]);
 
-        // Sheep::factory()->count(5)->create();
-        // InitialAssessment::factory()->count(5)->create();
-        // VitalSign::factory()->count(5)->create();
-        // Radiology::factory()->count(5)->create();
+        DB::table('sheep')->insert([
+            [
+                'id' => 'D240001',
+                'sheep_name' => 'Domba Putih',
+                'sheep_birth' => '2022-03-15',
+                'sheep_gender' => 'Betina',
+            ],
+            [
+                'id' => 'D240002',
+                'sheep_name' => 'Domba Hitam',
+                'sheep_birth' => '2021-08-10',
+                'sheep_gender' => 'Jantan',
+            ],
+            [
+                'id' => 'D240003',
+                'sheep_name' => 'Domba Cemani',
+                'sheep_birth' => '2023-01-25',
+                'sheep_gender' => 'Betina',
+            ],
+            [
+                'id' => 'D240004',
+                'sheep_name' => 'Domba Garut',
+                'sheep_birth' => '2020-11-30',
+                'sheep_gender' => 'Jantan',
+            ],
+            [
+                'id' => 'D240005',
+                'sheep_name' => 'Domba Super',
+                'sheep_birth' => '2022-05-20',
+                'sheep_gender' => 'Betina',
+            ],
+        ]);
     }
 }

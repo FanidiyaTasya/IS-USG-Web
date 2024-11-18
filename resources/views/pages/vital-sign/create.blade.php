@@ -12,19 +12,8 @@
                         <div class="row">
                             <div class="col-lg-4 mb-4">
                                 <label for="assessment_id" class="form-label">ID Domba</label>
-                                {{-- <input type="hidden" name="assessment_id" id="assessment_id" value="{{ $assessment_id }}"> --}}
-                                {{-- <input type="text" name="sheep_name" id="sheep_name" value="{{ $ass->sheep->id }} - {{ $ass->sheep->sheep_name }}" class="form-control" readonly> --}}
-                                <select id="assessment_id" name="assessment_id" class="form-control js-example-basic-single @error('assessment_id') is-invalid @enderror">
-                                    <option selected disabled></option>
-                                    @foreach($assessments as $ass)
-                                        <option value="{{ $ass->id }}" {{ old('assessment_id') == $ass->id ? 'selected' : '' }}>{{ $ass->sheep->id }} - {{ $ass->sheep->sheep_name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('assessment_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                                <input type="hidden" name="assessment_id" id="assessment_id" value="{{ $ass->id }}">
+                                <input type="text" name="sheep_name" id="sheep_name" value="{{ $ass->sheep->id }} - {{ $ass->sheep->sheep_name }}" class="form-control" readonly>
                             </div>
                             <div class="col-lg-4 mb-4">
                                 <label for="assessor" class="form-label">Nama Assessor</label>

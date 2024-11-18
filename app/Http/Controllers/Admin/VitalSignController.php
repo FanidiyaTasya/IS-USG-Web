@@ -17,14 +17,8 @@ class VitalSignController extends Controller {
         $text = "Apakah Anda yakin ingin menghapus?";
         confirmDelete($title, $text);
 
-        // $assessment = InitialAssessment::latest()->first(); // ini kl mau otomatis ambil id assessment yg trkhr di input
-        // if (!$assessment) {
-        //     $assessment = null;
-        // }
-
         return view('pages.vital-sign.vital', [
             'title' => 'Data Tanda Vital',
-            // 'assessment' => $assessment,
             'vitalsign' => VitalSign::orderBy('created_at', 'desc')->paginate(10)
         ]);
     }
@@ -32,23 +26,10 @@ class VitalSignController extends Controller {
     /**
      * Show the form for creating a new resource.
      */
-    // public function create($id) {
-    //     return view('pages.vital-sign.create', [
-    //         'title' => 'Tambah Data Tanda Vital',
-    //         'assessment_id' => $id,
-    //         'ass' => InitialAssessment::with('sheep')->find($id) // find() cari 1 entri
-    //         'assessments' => InitialAssessment::with('sheep')->where('id', $id)->get() // get() cari koleksi
-            
-    //         'assessments' => InitialAssessment::with('sheep')
-    //         ->whereDate('check_date', today())
-    //         ->get() 
-    //     ]);
-    // }
-
     public function create() {
         return view('pages.vital-sign.create', [
             'title' => 'Tambah Data Tanda Vital',
-            'assessments' => InitialAssessment::orderBy('created_at', 'desc')->get()
+            'ass' => InitialAssessment::latest()->first()
         ]);
     }
 

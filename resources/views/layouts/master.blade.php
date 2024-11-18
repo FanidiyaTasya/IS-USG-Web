@@ -50,12 +50,10 @@
       $jq('.js-example-basic-single').select2();
     });
   </script>
-
-  <script src="https://bootstrapdemos.adminmart.com/seodash/dist/assets/js/vendor.min.js"></script>
-  <script src="https://bootstrapdemos.adminmart.com/seodash/dist/assets/libs/jquery-steps/build/jquery.steps.min.js"></script>
-  <script src="https://bootstrapdemos.adminmart.com/seodash/dist/assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
-  <script src="https://bootstrapdemos.adminmart.com/seodash/dist/assets/js/forms/form-wizard.js"></script>
-
+  
+  <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery.steps.min.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+  <script src="{{ asset('assets/js/form-wizard.js') }}"></script>
 </body>
-
 </html>

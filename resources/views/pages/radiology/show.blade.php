@@ -47,10 +47,10 @@
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <div class="mb-4">
+                                    {{-- <div class="mb-4">
                                         <strong>Usia Kehamilan:</strong>
                                         <p>{{ $rad->gestational_age }} minggu</p>
-                                    </div>
+                                    </div> --}}
                                     <div class="mb-4">
                                         <strong>Status Kehamilan:</strong>
                                         <p>{{ $rad->pregnancy_status }}</p>

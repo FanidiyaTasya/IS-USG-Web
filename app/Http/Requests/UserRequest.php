@@ -18,12 +18,14 @@ class UserRequest extends FormRequest {
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array {
+        $userId = $this->route('user') ? $this->route('user')->id : null;
         return [
-            'name' => 'required|max:150',
-            'email' => 'required|string|email|max:100|unique:users,email',
-            'password' => 'required|string|min:6',
-            'photo' => 'nullable|image',
+            'name' => 'required|max:150',            
+            'email' => 'required|string|email|max:100|unique:users,email,' . $userId,
             'role' => 'required|in:Admin,Karyawan',
+            'photo' => 'nullable|image',
+            'password' => $this->isMethod('post') || $this->filled('password') ? 'required|string|min:6' : 'nullable',
+            'confirm_password' => $this->filled('password') ? 'required|same:password' : 'nullable',
         ];
     }
 
@@ -35,6 +37,8 @@ class UserRequest extends FormRequest {
             'email.unique' => 'Email sudah digunakan.',
             'password.required' => 'Password harus diisi.',
             'password.min' => 'Password harus minimal 6 karakter.',
+            'confirm_password.required' => 'Konfirmasi password harus diisi.',
+            'confirm_password.same' => 'Password tidak sama.',
             'photo.image' => 'File yang diunggah harus berupa gambar.',
             'role.required' => 'Peran harus dipilih.',
         ];

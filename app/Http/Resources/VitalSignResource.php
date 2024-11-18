@@ -20,9 +20,11 @@ class VitalSignResource extends JsonResource
             'heart_rate' => $this->heart_rate,
             'respiratory_rate' => $this->respiratory_rate,
             'weight' => $this->weight,
+            'additional_info' => $this->additional_info,
             'status_condition' => $this->status_condition,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'sheep_id' => $this->assessment->sheep->id,
+            'sheep_name' => $this->assessment->sheep->sheep_name,
+            'created_at' => $this->assessment->created_at,
         ];
     }
 }

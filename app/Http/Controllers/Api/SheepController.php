@@ -4,23 +4,24 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SheepRequest;
+use App\Http\Resources\SheepResource;
 use App\Models\Sheep;
 
 class SheepController extends Controller {
     
     public function index() {
-        $sheep = Sheep::all();
+        $sheep = Sheep::orderBy('created_at', 'desc')->get();
         return response()->json([
             'success' => true,
-            'data' => $sheep,
+            'data' => SheepResource::collection($sheep),
         ], 200);
     }
 
     public function show($id) {
-        $sheep = Sheep::find($id);
+        $sheep = Sheep::findOrFail($id);
         return response()->json([
             'success' => true,
-            'data' => $sheep,
+            'data' => new SheepResource($sheep),
         ], 200);
     }
 

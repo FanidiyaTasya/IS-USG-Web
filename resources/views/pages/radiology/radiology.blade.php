@@ -21,8 +21,9 @@
                         <tr>
                             <th>No</th>
                             <th>Tanggal Pemeriksaan</th>
+                            <th>ID Domba</th>
                             <th>Nama Domba</th>
-                            <th>Usia Kandungan</th>
+                            {{-- <th>Usia Kandungan</th> --}}
                             <th>Status Kehamilan</th>
                             <th>Aksi</th>
                         </tr>
@@ -32,8 +33,9 @@
                             <tr>  
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ Carbon\Carbon::parse($rad->assessment->created_at)->format('d-m-Y H:i:s') }}</td>
+                                <td>{{ $rad->assessment->sheep_id }}</td>
                                 <td>{{ $rad->assessment->sheep->sheep_name }}</td>
-                                <td>{{ $rad->gestational_age }} minggu</td>
+                                {{-- <td>{{ $rad->gestational_age }} minggu</td> --}}
                                 <td>{{ $rad->pregnancy_status }}</td>
                                 <td>
                                     <a href="{{ route('radiology.edit', $rad->id) }}" class="btn btn-info btn-sm me-2">

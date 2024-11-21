@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\RadiologyController;
 use App\Http\Controllers\Admin\SheepController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VitalSignController;
+use App\Http\Controllers\Admin\ChartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,4 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/vital-sign', VitalSignController::class);
     Route::resource('/radiology', RadiologyController::class);
     Route::resource('/user', UserController::class);
+
+    Route::get('/chart-data', [ChartController::class, 'getChartData'])->name('chart.data');
 });

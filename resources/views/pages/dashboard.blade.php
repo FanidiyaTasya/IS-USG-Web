@@ -58,31 +58,7 @@
   .bg-secondary { background: linear-gradient(145deg, #A9B388, #FEFAE0); }
   .bg-accent { background: linear-gradient(145deg, #FEFAE0, #5F6F52); }
 
-  .card-custom::before {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 300%;
-    height: 300%;
-    background: linear-gradient(60deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-    transform: rotate(45deg);
-    transition: opacity 0.7s ease;
-    opacity: 0;
-    animation: shine 1.5s infinite linear;
-  }
-
-  .card-custom:hover::before {
-    opacity: 1;
-  }
-
-  @keyframes shine {
-    0% { transform: translate(-100%, -100%) rotate(45deg); }
-    100% { transform: translate(100%, 100%) rotate(45deg); }
-  }
-
-  
-  #yearSelect {
+  #yearFilter {
     padding: 10px 15px;
     font-size: 1rem;
     font-weight: 600;
@@ -92,14 +68,22 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-  #yearSelect:hover {
+  #yearFilter:hover {
     background-color: #e1e1e1;
   }
 
-  #yearSelect:focus {
+  #yearFilter:focus {
     background-color: #d0d0d0;
     outline: none;
     box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.6);
+
+  canvas {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+
+
   }
 </style>
 
@@ -141,112 +125,154 @@
       </div>
     </div>
   </div>
-  
-  <div class="row mb-4">
-    <div class="col-lg-12">
-        <div class="card card-custom box-shape shadow-lg bg-primary">
-            <div class="card-body position-relative">
-                <div class="position-absolute top-0 end-0 p-3">
-                    <select id="yearSelect" class="form-select form-select-lg shadow-lg border-primary rounded-pill bg-light border-0" style="transition: all 0.3s ease-in-out;">
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                    </select>
-                </div>
-                <canvas id="sheepChart" width="400" height="200"></canvas>
+
+  <div class="container-fluid">
+    <div class="row mt-4">
+      <div class="col-lg-12">
+        <div class="card shadow-lg">
+          <div class="card-header">
+            <h5 class="card-title">Grafik Domba Hamil dan Tidak Hamil</h5>
+            <div class="float-end">
+              <select id="yearFilter" onchange="updateChart()">
+                @for ($i = 2020; $i <= date('Y'); $i++)
+                  <option value="{{ $i }}" {{ $i == date('Y') ? 'selected' : '' }}>{{ $i }}</option>
+                @endfor
+              </select>
             </div>
+          </div>
+          <div class="card-body">
+            <canvas id="pregnancyChart" width="400" height="200"></canvas>
+          </div>
         </div>
+      </div>
     </div>
   </div>
-
+  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    const ctx = document.getElementById('sheepChart').getContext('2d');
-    
-
-    const gradientHamil = ctx.createLinearGradient(0, 0, 0, 400);
-    gradientHamil.addColorStop(0, 'rgba(54, 162, 235, 0.9)');
-    gradientHamil.addColorStop(1, 'rgba(75, 192, 192, 0.5)');
+    let chart;
   
-    const gradientTidakHamil = ctx.createLinearGradient(0, 0, 0, 400);
-    gradientTidakHamil.addColorStop(0, 'rgba(255, 99, 132, 0.9)');
-    gradientTidakHamil.addColorStop(1, 'rgba(255, 159, 64, 0.5)');
+    function fetchChartData(year) {
+      return fetch(`/chart-data?year=${year}`)
+        .then(response => response.json());
+    }
   
-    const sheepChart = new Chart(ctx, {
+    function renderChart(data) {
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  
+      const pregnantData = Array(12).fill(0);
+      const notPregnantData = Array(12).fill(0);
+  
+      data.forEach(item => {
+        pregnantData[item.month - 1] = item.pregnant;
+        notPregnantData[item.month - 1] = item.not_pregnant;
+      });
+  
+      const ctx = document.getElementById('pregnancyChart').getContext('2d');
+  
+      if (chart) {
+        chart.destroy();
+      }
+  
+      const gradientPregnant = ctx.createLinearGradient(0, 0, 0, 400);
+      gradientPregnant.addColorStop(0, 'rgba(95, 111, 82, 1)');
+      gradientPregnant.addColorStop(1, 'rgba(95, 111, 82, 0.3)');
+  
+      const gradientNotPregnant = ctx.createLinearGradient(0, 0, 0, 400);
+      gradientNotPregnant.addColorStop(0, 'rgba(169, 179, 136, 1)');
+      gradientNotPregnant.addColorStop(1, 'rgba(169, 179, 136, 0.3)');
+  
+      chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'],
-            datasets: [
-                {
-                    label: 'Jumlah Domba Hamil',
-                    data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 8, 6],
-                    backgroundColor: gradientHamil,
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                    borderRadius: 10,
-                    borderSkipped: false
-                },
-                {
-                    label: 'Jumlah Domba Tidak Hamil',
-                    data: [3, 4, 2, 1, 6, 5, 8, 7, 6, 5, 4, 3],
-                    backgroundColor: gradientTidakHamil,
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1,
-                    borderRadius: 10,
-                    borderSkipped: false
-                }
-            ]
+          labels: months,
+          datasets: [
+            {
+              label: 'Hamil',
+              data: pregnantData,
+              backgroundColor: gradientPregnant,
+              borderColor: '#5F6F52',
+              borderWidth: 1,
+              borderRadius: 10,
+              hoverBackgroundColor: '#5F6F52',
+            },
+            {
+              label: 'Tidak Hamil',
+              data: notPregnantData,
+              backgroundColor: gradientNotPregnant,
+              borderColor: '#A9B388',
+              borderWidth: 1,
+              borderRadius: 10,
+              hoverBackgroundColor: '#A9B388',
+            }
+          ]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#fff',
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        }
-                    }
-                },
-                tooltip: {
-                    backgroundColor: 'rgba(0,0,0,0.8)',
-                    titleColor: '#fff',
-                    bodyColor: '#fff',
-                    borderColor: '#fff',
-                    borderWidth: 1,
-                    cornerRadius: 6
-                }
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                font: { size: 14, family: 'Arial, sans-serif', weight: 'bold' },
+                color: '#333',
+              }
             },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#fff',
-                        font: {
-                            size: 14
-                        }
-                    },
-                    grid: {
-                        color: '#ddd',
-                        borderColor: '#ddd'
-                    }
-                },
-                y: {
-                    ticks: {
-                        color: '#fff',
-                        font: {
-                            size: 14
-                        }
-                    },
-                    grid: {
-                        color: '#ddd',
-                        borderColor: '#ddd'
-                    }
-                }
+            tooltip: {
+              backgroundColor: 'rgba(50, 50, 50, 0.8)',
+              titleColor: '#fff',
+              bodyColor: '#fff',
+              titleFont: { size: 16, weight: 'bold' },
+              bodyFont: { size: 14 },
+              borderColor: '#333',
+              borderWidth: 1,
             }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: {
+                font: { size: 12, family: 'Arial, sans-serif', weight: '600' },
+                color: '#666'
+              },
+              title: {
+                display: true,
+                text: 'Bulan',
+                color: '#444',
+                font: { size: 14, weight: '600' }
+              }
+            },
+            y: {
+              grid: { color: 'rgba(200, 200, 200, 0.2)', borderDash: [5, 5] },
+              ticks: {
+                stepSize: 5,
+                font: { size: 12, family: 'Arial, sans-serif', weight: '600' },
+                color: '#666'
+              },
+              title: {
+                display: true,
+                text: 'Jumlah Domba',
+                color: '#444',
+                font: { size: 14, weight: '600' }
+              },
+              beginAtZero: true
+            }
+          },
+          animation: {
+            duration: 1500,
+            easing: 'easeInOutQuart'
+          }
         }
+      });
+    }
+  
+    function updateChart() {
+      const year = document.getElementById('yearFilter').value;
+      fetchChartData(year).then(data => renderChart(data));
+    }
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      updateChart();
     });
   </script>
-
-@endsection
+  @endsection

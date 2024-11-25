@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VitalSignController;
 use App\Http\Controllers\Admin\ChartController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/chart-data', [DashboardController::class, 'getChartData'])->name('chart.data');
+
     Route::resource('/sheep', SheepController::class);
     Route::get('sheep/{id}/download', [SheepController::class, 'downloadQrCode'])->name('sheep.download');
 
@@ -34,6 +37,4 @@ Route::middleware('auth')->group(function () {
     Route::resource('/vital-sign', VitalSignController::class);
     Route::resource('/radiology', RadiologyController::class);
     Route::resource('/user', UserController::class);
-
-    Route::get('/chart-data', [ChartController::class, 'getChartData'])->name('chart.data');
 });

@@ -131,7 +131,7 @@
       <div class="col-lg-12">
         <div class="card shadow-lg">
           <div class="card-header">
-            <h5 class="card-title">Grafik Domba Hamil dan Tidak Hamil</h5>
+            <h5 class="card-title">Grafik Domba Bunting dan Tidak Bunting</h5>
             <div class="float-end">
               <select id="yearFilter" onchange="updateChart()">
                 @for ($i = 2020; $i <= date('Y'); $i++)
@@ -188,7 +188,7 @@
           labels: months,
           datasets: [
             {
-              label: 'Hamil',
+              label: 'Bunting',
               data: pregnantData,
               backgroundColor: gradientPregnant,
               borderColor: '#5F6F52',
@@ -197,7 +197,7 @@
               hoverBackgroundColor: '#5F6F52',
             },
             {
-              label: 'Tidak Hamil',
+              label: 'Tidak Bunting',
               data: notPregnantData,
               backgroundColor: gradientNotPregnant,
               borderColor: '#A9B388',

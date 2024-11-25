@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('ultrasound_image')->nullable();
             // $table->integer('gestational_age')->unsigned()->nullable();;
             // $table->date('est_birth')->nullable();
-            $table->enum('pregnancy_status', ['Hamil', 'Tidak Hamil']);
+            $table->enum('pregnancy_status', ['Bunting', 'Tidak Bunting']);
             $table->text('additional_info')->nullable();
             $table->timestamps();
         });

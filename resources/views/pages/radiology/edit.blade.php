@@ -28,7 +28,7 @@
                         <div class="row mb-4">
                             <div class="col-lg-6 mb-4">
                                 {{-- <div class="mb-4">
-                                    <label for="gestational_age" class="form-label">Usia Kehamilan (in weeks)</label>
+                                    <label for="gestational_age" class="form-label">Usia KeBuntingan (in weeks)</label>
                                     <input type="number" class="form-control @error('gestational_age') is-invalid @enderror" id="gestational_age" name="gestational_age" min="0" step="1" value="{{ old('gestational_age', $radiology->gestational_age) }}">
                                     @error('gestational_age')
                                     <div class="invalid-feedback">
@@ -37,11 +37,11 @@
                                     @enderror
                                 </div> --}}
                                 <div class="mb-4">
-                                    <label for="pregnancy_status" class="form-label">Status Kehamilan</label>
+                                    <label for="pregnancy_status" class="form-label">Status Kebuntingan</label>
                                     <select class="form-select @error('pregnancy_status') is-invalid @enderror" id="pregnancy_status" name="pregnancy_status">
                                         <option selected disabled>Pilih Status</option>
-                                        <option value="Hamil" {{ old('pregnancy_status', $radiology->pregnancy_status) == 'Hamil' ? 'selected' : '' }}>Hamil</option>
-                                        <option value="Tidak Hamil" {{ old('pregnancy_status', $radiology->pregnancy_status) == 'Tidak Hamil' ? 'selected' : '' }}>Tidak Hamil</option>
+                                        <option value="Bunting" {{ old('pregnancy_status', $radiology->pregnancy_status) == 'Bunting' ? 'selected' : '' }}>Bunting</option>
+                                        <option value="Tidak Bunting" {{ old('pregnancy_status', $radiology->pregnancy_status) == 'Tidak Bunting' ? 'selected' : '' }}>Tidak Bunting</option>
                                     </select>
                                     @error('pregnancy_status')
                                     <div class="invalid-feedback">

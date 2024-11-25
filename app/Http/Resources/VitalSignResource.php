@@ -24,7 +24,7 @@ class VitalSignResource extends JsonResource
             'status_condition' => $this->status_condition,
             'sheep_id' => $this->assessment->sheep->id,
             'sheep_name' => $this->assessment->sheep->sheep_name,
-            'created_at' => $this->assessment->created_at,
+            'created_at' => $this->assessment->created_at->setTimezone('Asia/Jakarta')->format('Y-m-d H:i:s'),
         ];
     }
 }

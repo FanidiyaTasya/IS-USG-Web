@@ -27,15 +27,6 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-lg-6 mb-4">
-                                {{-- <div class="mb-4">
-                                    <label for="gestational_age" class="form-label">Usia KeBuntingan (in weeks)</label>
-                                    <input type="number" class="form-control @error('gestational_age') is-invalid @enderror" id="gestational_age" name="gestational_age" min="0" step="1" value="{{ old('gestational_age') }}">
-                                    @error('gestational_age')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div> --}}
                                 <div class="mb-4">
                                     <label for="pregnancy_status" class="form-label">Status Kebuntingan</label>
                                     <select class="form-select @error('pregnancy_status') is-invalid @enderror" id="pregnancy_status" name="pregnancy_status">

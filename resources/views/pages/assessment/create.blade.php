@@ -45,7 +45,6 @@
                                         <option value="bengkak" {{ old('hoof') == 'bengkak' ? 'selected' : '' }}>Bengkak</option>
                                         <option value="patah" {{ old('hoof') == 'patah' ? 'selected' : '' }}>Patah</option>
                                         <option value="terinfeksi" {{ old('hoof') == 'terinfeksi' ? 'selected' : '' }}>Terinfeksi</option>
-                                        <option value="panjang" {{ old('hoof') == 'panjang' ? 'selected' : '' }}>Panjang</option>
                                         <option value="lembek" {{ old('hoof') == 'lembek' ? 'selected' : '' }}>Lembek</option>
                                         <option value="pecah" {{ old('hoof') == 'pecah' ? 'selected' : '' }}>Pecah</option>
                                     </select>

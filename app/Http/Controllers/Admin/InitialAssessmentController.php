@@ -30,7 +30,7 @@ class InitialAssessmentController extends Controller {
     public function create() {
         return view('pages.assessment.create', [
             'title' => 'Tambah Data Pemeriksaan Awal',
-            'sheep' => Sheep::all()
+            'sheep' => Sheep::where('sheep_gender', 'Betina')->get()
         ]);
     }
 

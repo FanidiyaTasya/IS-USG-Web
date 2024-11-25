@@ -27,12 +27,13 @@ class SheepController extends Controller {
 
     public function store(SheepRequest $request) {
         $validatedData = $request->validated();
-        
+        $validatedData['id'] = Sheep::generateUniqueSheepId();
+
         if ($request->hasFile('sheep_photo')) {
             $validatedData['sheep_photo'] = $request->file('sheep_photo')->store('sheep_photos', 'public');
         }
 
-        $sheep = Sheep::create($validatedData);
+        $sheep = Sheep::insert([$validatedData]);
         return response()->json([
             'success' => true,
             'data' => $sheep,

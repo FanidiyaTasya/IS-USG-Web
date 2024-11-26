@@ -27,9 +27,17 @@ class VitalSignController extends Controller {
      * Show the form for creating a new resource.
      */
     public function create() {
+        $initialAssessment = InitialAssessment::latest()->first();
+        $vitalSignExists = VitalSign::where('assessment_id', $initialAssessment->id)->exists();
+
+        if ($vitalSignExists) {
+            Alert::info('Info', 'Mohon isi Pemeriksaan Awal terlebih dahulu sebelum melanjutkan pengisian Tanda Vital.');
+            return redirect()->route('vital-sign.index');
+        }
+
         return view('pages.vital-sign.create', [
             'title' => 'Tambah Data Tanda Vital',
-            'ass' => InitialAssessment::latest()->first()
+            'ass' => $initialAssessment
         ]);
     }
 

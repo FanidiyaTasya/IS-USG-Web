@@ -27,9 +27,17 @@ class RadiologyController extends Controller {
      * Show the form for creating a new resource.
      */
     public function create() {
+        $initialAssessment = InitialAssessment::latest()->first();
+        $radiologyExists = Radiology::where('assessment_id', $initialAssessment->id)->exists();
+
+        if ($radiologyExists) {
+            Alert::info('Info', 'Mohon isi Pemeriksaan Awal terlebih dahulu sebelum melanjutkan pengisian Radiologi.');
+            return redirect()->route('vital-sign.index');
+        }
+
         return view('pages.radiology.create', [
-            'title' => 'Tambah Data Radiologi',
-            'ass' => InitialAssessment::latest()->first()
+            'title' => 'Tambah Data Tanda Vital',
+            'ass' => $initialAssessment
         ]);
     }
 

@@ -50,10 +50,36 @@
       $jq('.js-example-basic-single').select2();
     });
   </script>
-  
-  <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.steps.min.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
-  <script src="{{ asset('assets/js/form-wizard.js') }}"></script>
+  <script>
+    $(document).ready(function(){
+        $("#ultrasound_image").change(function(event){
+            var formData = new FormData($("#radiologyForm")[0]);
+
+            $.ajax({
+                url: '{{ url('/predict-usg') }}',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    console.log('AJAX Success:', response);
+
+                    if(response.result){
+                        $("#predictionResult").val(response.result);
+                        $("#predictionResultText").html("Prediction Result: " + response.result);
+                    } else {
+                        $("#predictionResult").val("Prediction failed.");
+                    }
+                },
+                error: function(xhr, status, error){
+                    console.error('AJAX Error:');
+                    console.error('Status:', status);
+                    console.error('Error:', error);
+                    console.error('Response:', xhr.responseText);
+                }
+            });
+        });
+    });
+  </script>
 </body>
 </html>

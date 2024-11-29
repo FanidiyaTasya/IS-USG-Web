@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RadiologyRequest;
 use App\Models\InitialAssessment;
 use App\Models\Radiology;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -32,7 +34,7 @@ class RadiologyController extends Controller {
 
         if ($radiologyExists) {
             Alert::info('Info', 'Mohon isi Pemeriksaan Awal terlebih dahulu sebelum melanjutkan pengisian Radiologi.');
-            return redirect()->route('vital-sign.index');
+            return redirect()->route('radiology.index');
         }
 
         return view('pages.radiology.create', [
@@ -106,5 +108,35 @@ class RadiologyController extends Controller {
         
         Alert::success('Berhasil!', 'Data Radiologi berhasil dihapus.');
         return redirect('/radiology');
+    }
+
+    public function predictPregnant(Request $request) {
+        $request->validate([
+            'ultrasound_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+        $image = $request->file('ultrasound_image');
+
+        $response = Http::attach('ultrasound_image', file_get_contents($image), $image->getClientOriginalName())
+                        ->post('http://127.0.0.1:5000/predict-pregnant');
+
+        if ($response->successful()) {
+            $data = $response->json();
+
+            if(isset($data['result'])) {
+                return response()->json([
+                    'result' => $data['result'],
+                    'probability_pregnant' => $data['probability_pregnant'],
+                    'probability_non_pregnant' => $data['probability_non_pregnant']
+                ]);
+            } else {
+                return response()->json([
+                    'error' => 'No prediction result found from API.'
+                ], 500);
+            }
+        } else {
+            return response()->json([
+                'error' => 'Failed to get prediction from API'
+            ], 500);
+        }
     }
 }

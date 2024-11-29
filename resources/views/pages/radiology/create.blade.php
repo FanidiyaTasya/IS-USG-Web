@@ -7,7 +7,7 @@
             <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('radiology.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="radiologyForm" action="{{ route('radiology.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-lg-4 mb-4">
@@ -29,16 +29,8 @@
                             <div class="col-lg-6 mb-4">
                                 <div class="mb-4">
                                     <label for="pregnancy_status" class="form-label">Status Kebuntingan</label>
-                                    <select class="form-select @error('pregnancy_status') is-invalid @enderror" id="pregnancy_status" name="pregnancy_status">
-                                        <option selected disabled>Pilih Status</option>
-                                        <option value="Bunting" {{ old('pregnancy_status') == 'Bunting' ? 'selected' : '' }}>Bunting</option>
-                                        <option value="Tidak Bunting" {{ old('pregnancy_status') == 'Tidak Bunting' ? 'selected' : '' }}>Tidak Bunting</option>
-                                    </select>
-                                    @error('pregnancy_status')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
+                                    {{-- <p id="predictionResultText">Waiting for upload...</p> --}}
+                                    <input type="text" name="pregnancy_status" id="predictionResult" class="form-control" readonly>
                                 </div>
                             </div>
                             <div class="col-lg-6">

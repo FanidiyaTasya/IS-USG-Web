@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\SheepController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VitalSignController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +20,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::get('/', function () {
+    return view('pages.landingpage');
+})->name('landingpage');
+
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

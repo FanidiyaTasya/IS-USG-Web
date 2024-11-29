@@ -18,6 +18,7 @@ class SheepResource extends JsonResource
             'sheep_name' => $this->sheep_name,
             'sheep_birth' => $this->sheep_birth,
             'sheep_gender' => $this->sheep_gender,
+            'sheep_photo' => $this->sheep_photo,
         ];
     }
 }

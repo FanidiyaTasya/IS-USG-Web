@@ -22,7 +22,7 @@ class SheepController extends Controller {
         return view('pages.sheep.sheep',
         [
             'title' => 'Data Domba',
-            'sheep' => Sheep::orderBy('created_at', 'desc')->paginate(8)
+            'sheep' => Sheep::orderBy('created_at', 'desc')->paginate(9)
         ]);
     }
 

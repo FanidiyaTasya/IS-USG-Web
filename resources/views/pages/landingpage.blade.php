@@ -11,17 +11,170 @@
     <meta name="keywords" content="" />
     <meta name="author" content="" />
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
-    <!--Replace with your tailwind.css once created-->
+
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
-    <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gridlex/2.7.1/gridlex.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,500;0,900&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
       .gradient {
         background: linear-gradient(90deg, #5F6F52 0%, #FEFAE0 100%);
       }
+
+      .tall-50 {
+            min-height: 50vh;
+        }
+        .padded {
+            padding: 5%;
+        }
+
+        .bg-image {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .bgm-image {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 500px;
+            width: 100%;
+            border-radius: 10px; 
+        }
+        .bg-1 {
+            background-image: url('assets/images/website/dashboard.png');
+        }
+        .bg-2 {
+            background-image: url('assets/images/website/datadomba.png');
+        }
+        .bg-3 {
+            background-image: url('assets/images/website/pemeriksaanawal.png');
+        }
+        .bg-4 {
+            background-image: url('assets/images/website/tandavital.png');
+        }
+        .bg-5 {
+            background-image: url('assets/images/website/radiologi.png');
+        }
+        .bgm-1 {
+            background-image: url('assets/images/mobile/dashboard.jpg');
+        }
+        .bgm-2 {
+            background-image: url('assets/images/mobile/detaildatadomba.jpg');
+        }
+        .bgm-3 {
+            background-image: url('assets/images/mobile/pemeriksaanawal.jpg');
+        }
+        .bgm-4 {
+            background-image: url('assets/images/mobile/tandavital.jpg');
+        }
+        .bgm-5 {
+            background-image: url('assets/images/mobile/radiologi.jpg');
+        }
+        .bgm-6 {
+            background-image: url('assets/images/mobile/qrcode.jpg');
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .h-80 {
+            height: 400px;
+        }
+        p {
+            font-weight: 300;
+            line-height: 1.4;
+            margin-bottom: 0.8rem;
+        }
+        .fitur-website {
+            background: #ffffff;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fitur-website h2 {
+            color: #000000;
+        }
+
+        .fitur-website p {
+            color: #333333;
+        }
+
+        footer {
+            background-color: #222;
+            color: #f5f5f5;
+            padding: 20px 0;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px 20px;
+        }
+
+        .footer-section h2 {
+            color: #5F6F52;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section p, 
+        .footer-section ul {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: #f5f5f5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #5F6F52;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+        }
+
+      
     </style>
   </head>
   <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
-    <!--Nav-->
+    
     <nav id="header" class="fixed w-full z-30 top-0 text-white">
       <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div class="pl-4 flex items-center">
@@ -45,10 +198,10 @@
               <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Home</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">Wesite</a>
+              <a class="inline-block py-2 px-4 text-black no-underline" href="#fitur-website">Fitur Website</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">Mobile</a>
+              <a class="inline-block py-2 px-4 text-black no-underline" href="#fitur-mobile">Fitur Mobile</a>
             </li>
           </ul>
           <a
@@ -63,20 +216,20 @@
       </div>
       <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
     </nav>
-    <!--Hero-->
+    
     <div class="pt-10">
       <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-        <!--Left Col-->
+        
         <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
           <img src="assets/images/logos/gmf-farm.png" alt="Logo" class="w-32 h-32 mb-4 mx-auto md:mx-0">
           <h1 class="my-4 text-5xl font-bold leading-tight">
             Itelegence System Ultrasonography
           </h1>
           <p class="leading-normal text-2xl mb-8">
-            Wellcome!
+            Welcome!
           </p>
         </div>
-        <!--Right Col-->
+        
         <div class="w-full md:w-3/5 py-6 text-center">
           <img class="w-full md:w-4/5 z-50" src="assets/images/sheep/funny.png" />
         </div>
@@ -100,18 +253,133 @@
           </g>
         </g>
       </svg>
-      <section class="bg-white border-b py-8">
-        <div class="container max-w-5xl mx-auto m-8">
+      
+      <div id="fitur-website" class="fitur-website">
           <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-            Fitur Website
+            Fitur Wesite
           </h2>
-          <div class="w-full mb-4">
-            <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+    <section class="grid">
+      <div class="col-6_sm-12 bg-image bg-1 tall-50"></div>
+      <div class="col-6_sm-12-middle padded">
+          <h2>Dashboard</h2>
+          <p>"Pada bagian dashboard, terdapat informasi mengenai jumlah keseluruhan domba, jumlah domba jantan, dan jumlah domba betina. Selain itu, terdapat grafik yang menunjukkan jumlah domba bunting dan domba tidak bunting, dengan rekapitulasi per bulan dan per tahun."</p>
+      </div>
+  </section>
+
+  <section class="grid flex-flip-sm">
+      <div class="col-6_sm-12-middle padded">
+          <h2>Data Domba</h2>
+          <p>"Pada bagian data domba, terdapat fitur CRUD untuk menambah data domba. Setelah data ditambahkan, informasi tersebut akan ditampilkan seperti pada gambar berikut."</p>
+      </div>
+      <div class="col-6_sm-12 bg-image bg-2 tall-50"></div>
+  </section>
+
+  <section class="grid">
+      <div class="col-6_sm-12 bg-image bg-3 tall-50 hide-sm"></div>
+      <div class="col-6_sm-12-middle padded">
+          <h2>Pemeriksaan Awal</h2>
+          <p>"Pada bagian pemeriksaan awal, terdapat fitur CRUD untuk menambahkan kondisi fisik domba."</p>
+      </div>
+  </section>
+
+  <section class="grid flex-flip-sm">
+      <div class="col-6_sm-12-middle padded">
+          <h2>Tanda Vital</h2>
+          <p>"Pada bagian tanda vital, terdapat fitur CRUD untuk menambahkan kondisi vital domba."</p>
+      </div>
+      <div class="col-6_sm-12 bg-image bg-4 tall-50"></div>
+  </section>
+
+  <section class="grid">
+      <div class="col-6_sm-12 bg-image bg-5 tall-50 hide-sm"></div>
+      <div class="col-6_sm-12-middle padded">
+          <h2>Radiologi</h2>
+          <p>"Pada bagian radiologi, akan ditentukan apakah domba bunting atau tidak, serta dapat menambahkan foto hasil USG domba."</p>
+      </div>
+  </section>
+      </div>
+
+      <div id="fitur-mobile" class="fitur-website">
+        <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+            Fitur Mobile
+        </h2>
+    
+        <section class="flex flex-col md:flex-row items-center">
+            <div class="w-full md:w-1/2 bgm-image bgm-1"></div>
+            <div class="w-full md:w-1/2 p-4">
+                <h2>Dashboard</h2>
+                <p>"Pada bagian dashboard, terdapat informasi mengenai jumlah domba jantan, jumlah domba betina, dan data domba yang ditampilkan."</p>
+            </div>
+        </section>
+    
+        <section class="flex flex-col md:flex-row-reverse items-center">
+            <div class="w-full md:w-1/2 bgm-image bgm-2"></div>
+            <div class="w-full md:w-1/2 p-4">
+                <h2>Data Domba</h2>
+                <p>"Pada bagian data domba, terdapat fitur CRUD untuk menambah data domba."</p>
+            </div>
+        </section>
+    
+        <section class="flex flex-col md:flex-row items-center">
+            <div class="w-full md:w-1/2 bgm-image bgm-3"></div>
+            <div class="w-full md:w-1/2 p-4">
+                <h2>Pemeriksaan Awal</h2>
+                <p>"Pada bagian pemeriksaan awal, akan ditampilkan data pemeriksaan yang telah ditambahkan melalui website."</p>
+            </div>
+        </section>
+    
+        <section class="flex flex-col md:flex-row-reverse items-center">
+            <div class="w-full md:w-1/2 bgm-image bgm-4"></div>
+            <div class="w-full md:w-1/2 p-4">
+                <h2>Tanda Vital</h2>
+                <p>"Pada bagian tanda vital, akan ditampilkan data vital yang telah ditambahkan melalui website."</p>
+            </div>
+        </section>
+    
+        <section class="flex flex-col md:flex-row items-center">
+            <div class="w-full md:w-1/2 bgm-image bgm-5"></div>
+            <div class="w-full md:w-1/2 p-4">
+                <h2>Radiologi</h2>
+                <p>"Pada bagian radiologi, akan ditampilkan data radiologi yang telah ditambahkan melalui website."</p>
+            </div>
+        </section>
+
+        <section class="flex flex-col md:flex-row-reverse items-center">
+          <div class="w-full md:w-1/2 bgm-image bgm-6"></div>
+          <div class="w-full md:w-1/2 p-4">
+              <h2>QR CODE</h2>
+              <p>"Fitur QR code ini digunakan untuk memindai barcode domba dan menampilkan data domba sesuai dengan barcode yang dipindai."</p>
           </div>
-          <div class="flex flex-wrap">
-            <div class="w-5/6 sm:w-1/2 p-6">
-              <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                
+      </section>
+
+
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-section about">
+          <h2>Tentang Kami</h2>
+          <p>Website ini menyediakan sistem cerdas untuk analisis data USG domba, membantu peternak dan dokter hewan dengan solusi yang akurat dan terpercaya.</p>
+        </div>
+        <div class="footer-section links">
+          <h2>Tautan Cepat</h2>
+          <ul>
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#features">Fitur</a></li>
+            <li><a href="#contact">Kontak</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-section contact">
+          <h2>Hubungi Kami</h2>
+          <p>Email: <a href="mailto:info@example.com"></a></p>
+          <p>Telepon:</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Intelligent System Ultrasonographi | All Rights Reserved</p>
+      </div>
+    </footer>                
                 <script>
                     var scrollpos = window.scrollY;
                     var header = document.getElementById("header");
@@ -121,7 +389,7 @@
                     var toToggle = document.querySelectorAll(".toggleColour");
               
                     document.addEventListener("scroll", function () {
-                      /*Apply classes for slide in bar*/
+
                       scrollpos = window.scrollY;
               
                       if (scrollpos > 10) {
@@ -130,7 +398,7 @@
                         navaction.classList.add("gradient");
                         navaction.classList.remove("text-gray-800");
                         navaction.classList.add("text-white");
-                        //Use to switch toggleColour colours
+                        
                         for (var i = 0; i < toToggle.length; i++) {
                           toToggle[i].classList.add("text-gray-800");
                           toToggle[i].classList.remove("text-white");
@@ -144,7 +412,7 @@
                         navaction.classList.add("bg-white");
                         navaction.classList.remove("text-white");
                         navaction.classList.add("text-gray-800");
-                        //Use to switch toggleColour colours
+                        
                         for (var i = 0; i < toToggle.length; i++) {
                           toToggle[i].classList.add("text-white");
                           toToggle[i].classList.remove("text-gray-800");
@@ -157,8 +425,6 @@
                     });
                   </script>
                   <script>
-                    /*Toggle dropdown list*/
-                    /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
               
                     var navMenuDiv = document.getElementById("nav-content");
                     var navMenu = document.getElementById("nav-toggle");
@@ -167,18 +433,18 @@
                     function check(e) {
                       var target = (e && e.target) || (event && event.srcElement);
               
-                      //Nav Menu
+                      
                       if (!checkParent(target, navMenuDiv)) {
-                        // click NOT on the menu
+                       
                         if (checkParent(target, navMenu)) {
-                          // click on the link
+                          
                           if (navMenuDiv.classList.contains("hidden")) {
                             navMenuDiv.classList.remove("hidden");
                           } else {
                             navMenuDiv.classList.add("hidden");
                           }
                         } else {
-                          // click both outside link and outside menu, hide menu
+                          
                           navMenuDiv.classList.add("hidden");
                         }
                       }

@@ -223,7 +223,7 @@
         <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
           <img src="assets/images/logos/gmf-farm.png" alt="Logo" class="w-32 h-32 mb-4 mx-auto md:mx-0">
           <h1 class="my-4 text-5xl font-bold leading-tight">
-            Itelegence System Ultrasonography
+            Intelligent System Ultrasonography
           </h1>
           <p class="leading-normal text-2xl mb-8">
             Welcome!

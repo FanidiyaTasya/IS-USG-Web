@@ -20,11 +20,9 @@ function searchTable(input, tableId) {
 
 // Menambahkan event listener untuk semua input pencarian
 document.addEventListener('DOMContentLoaded', () => {
-    // Ambil semua input pencarian dengan class 'search-input'
     const searchInputs = document.querySelectorAll('.search-input');
     
     searchInputs.forEach(input => {
-        // Ambil ID tabel dari atribut data-input
         const tableId = input.dataset.tableId; 
         input.addEventListener('keyup', () => {
             searchTable(input, tableId);
@@ -33,16 +31,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // search data domba
-document.getElementById('search').addEventListener('input', function() {
-    let filter = this.value.toLowerCase();
-    let items = document.querySelectorAll('#sheep-list .sheep-item');
+document.addEventListener('DOMContentLoaded', function () {
+    let searchElement = document.getElementById('search');
+    let sheepList = document.getElementById('sheep-list'); 
 
-    items.forEach(function(item) {
-        let text = item.textContent.toLowerCase();
-        if (text.includes(filter)) {
-            item.style.display = '';
-        } else {
-            item.style.display = 'none';
-        }
-    });
+    if (searchElement && sheepList) {
+        searchElement.addEventListener('input', function () {
+            let filter = this.value.toLowerCase();
+            let items = document.querySelectorAll('#sheep-list .sheep-item');
+
+            items.forEach(function (item) {
+                let text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    }
 });

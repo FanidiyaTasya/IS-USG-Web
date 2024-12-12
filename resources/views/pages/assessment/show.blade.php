@@ -30,16 +30,16 @@
 
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <strong>Gejala 1:</strong>
-                        <p>{{ $assessment->symptom_1 }}</p>
+                        <strong>Kondisi Kuku:</strong>
+                        <p>{{ $assessment->hoof }}</p>
                     </div>
                     <div class="mb-4">
-                        <strong>Gejala 2:</strong>
-                        <p>{{ $assessment->symptom_2 }}</p>
+                        <strong>Kondisi Mata:</strong>
+                        <p>{{ $assessment->eye }}</p>
                     </div>
                     <div class="mb-4">
-                        <strong>Gejala 3:</strong>
-                        <p>{{ $assessment->symptom_3 }}</p>
+                        <strong>Kondisi Bulu:</strong>
+                        <p>{{ $assessment->wool }}</p>
                     </div>
                     <div class="mb-4">
                         <strong>Keterangan Lain:</strong>

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\VitalSignRequest;
 use App\Models\InitialAssessment;
 use App\Models\VitalSign;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class VitalSignController extends Controller {
@@ -30,7 +32,7 @@ class VitalSignController extends Controller {
         $initialAssessment = InitialAssessment::latest()->first();
         $vitalSignExists = VitalSign::where('assessment_id', $initialAssessment->id)->exists();
 
-        if ($vitalSignExists) {
+        if ($vitalSignExists && $initialAssessment) {
             Alert::info('Info', 'Mohon isi Pemeriksaan Awal terlebih dahulu sebelum melanjutkan pengisian Tanda Vital.');
             return redirect()->route('vital-sign.index');
         }
@@ -44,11 +46,25 @@ class VitalSignController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(VitalSignRequest $request) {
+    //     // dd($request->all());
+    //     VitalSign::create($request->validated());
+    //     Alert::success('Berhasil!', 'Data Tanda Vital berhasil disimpan.');
+    //     return redirect('/vital-sign');
+    // }
+
     public function store(VitalSignRequest $request) {
-        // dd($request->all());
-        VitalSign::create($request->validated());
-        Alert::success('Berhasil!', 'Data Tanda Vital berhasil disimpan.');
-        return redirect('/vital-sign');
+        $data = $request->validated();
+
+        if ($request->has('status_condition')) {
+            $data['status_condition'] = $request->input('status_condition');
+        }
+        VitalSign::create($data);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data Tanda Vital berhasil disimpan!'
+        ]);
     }
 
     /**
@@ -91,5 +107,38 @@ class VitalSignController extends Controller {
         VitalSign::destroy($id);
         Alert::success('Berhasil!', 'Data Tanda Vital berhasil dihapus.');
         return redirect('/vital-sign');
+    }
+
+    public function predictHealth(Request $request) {
+        $initialAssessment = InitialAssessment::latest()->first();
+        $data = [
+            'Suhu Tubuh (°C)' => $request->input('temperature'),
+            'Frekuensi Pernapasan (x/menit)' => $request->input('respiratory_rate'),
+            'Detak Jantung (x/menit)' => $request->input('heart_rate'),
+            'Kuku' => $initialAssessment->hoof,
+            'Mata' => $initialAssessment->eye,
+            'Bulu' => $initialAssessment->wool
+        ];
+
+        try {
+            $response = Http::post('http://127.0.0.1:5000/predict-health', $data);
+
+            if ($response->successful()) {
+                return response()->json([
+                    'status' => 'success',
+                    'prediction' => $response->json()['predict']
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $response->body()
+                ], $response->status());
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 }

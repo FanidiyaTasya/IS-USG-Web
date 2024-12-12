@@ -23,7 +23,7 @@ class VitalSignRequest extends FormRequest {
             'heart_rate' => 'required|integer|min:0',
             'respiratory_rate' => 'required|integer|min:0',
             'weight' => 'required|numeric|between:0,999.99',
-            'status_condition' => 'required|in:Sehat,Tidak Sehat',
+            'status_condition' => 'required|string',
             'additional_info' => 'nullable|string'
         ];
 
@@ -44,9 +44,7 @@ class VitalSignRequest extends FormRequest {
             'respiratory_rate.required' => 'Laju pernapasan harus diisi.',
             'respiratory_rate.integer' => 'Laju pernapasan  harus berupa angka bulat.',
             'weight.required' => 'Berat harus diisi.',
-            'weight.numeric' => 'Berat harus berupa angka.',
-            'status_condition.required' => 'Status kondisi harus dipilih.',
-            'status_condition.in' => 'Status kondisi harus salah satu dari: Sehat, Tidak Sehat.',
+            'weight.numeric' => 'Berat harus berupa angka.'
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\RadiologyController;
 use App\Http\Controllers\Admin\SheepController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VitalSignController;
+use App\Models\InitialAssessment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/assessment', InitialAssessmentController::class);
     Route::resource('/vital-sign', VitalSignController::class);
-
+    
     Route::resource('/radiology', RadiologyController::class);
     Route::post('/predict-usg', [RadiologyController::class, 'predictPregnant']);
 

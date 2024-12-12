@@ -41,15 +41,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
-    $(document).ready(function() {
-        $('.js-example-basic-single').select2();
-    });
-    
-    var $jq = jQuery.noConflict(); // wizard conlict select2
-    $jq(document).ready(function() {
-      $jq('.js-example-basic-single').select2();
-    });
-  </script>
+      $(document).ready(function() {
+          $('.js-example-basic-single').select2();
+        });
+    </script>
   <script>
     $(document).ready(function(){
         $("#ultrasound_image").change(function(event){
@@ -81,5 +76,57 @@
         });
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <script>
+    $(document).ready(function () {
+        $('#vitalSignForm').on('submit', function (event) {
+            event.preventDefault();
+            var formData = new FormData($(this)[0]);
+
+            $.ajax({
+                url: '/check-health',
+                method: 'POST',
+                data: JSON.stringify(Object.fromEntries(formData)),
+                contentType: 'application/json',
+                success: function (response) {
+                    $('#statusCondition').val(response.prediction);
+                    formData.set('status_condition', response.prediction);
+
+                    $.ajax({
+                        url: '/vital-sign',
+                        method: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (saveResponse) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil',
+                                text: saveResponse.message,
+                            }).then(() => {
+                                window.location.href = '/vital-sign';
+                            });
+                        },
+                        error: function (xhr) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gagal',
+                                text: 'Data tidak dapat disimpan. Silakan cek input Anda.',
+                            });
+                        },
+                    });
+                },
+                error: function (xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Gagal mendapatkan prediksi.',
+                    });
+                },
+            });
+        });
+    });
+</script>
 </body>
 </html>

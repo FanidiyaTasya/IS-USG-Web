@@ -7,7 +7,7 @@
             <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('vital-sign.store') }}" method="POST">
+                    <form id="vitalSignForm" action="{{ route('vital-sign.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-lg-4 mb-4">
@@ -29,7 +29,7 @@
                             <div class="col-lg-6 mb-4">
                                 <div class="mb-4">
                                     <label for="temperature" class="form-label">Suhu</label>
-                                    <input type="text" name="temperature" id="temperature" value="{{ old('temperature') }}" class="form-control @error('temperature') is-invalid @enderror">
+                                    <input type="number" name="temperature" id="temperature" value="{{ old('temperature') }}" class="form-control @error('temperature') is-invalid @enderror">
                                     @error('temperature')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="heart_rate" class="form-label">Detak Jantung</label>
-                                    <input type="text" name="heart_rate" id="heart_rate" value="{{ old('heart_rate') }}" class="form-control @error('heart_rate') is-invalid @enderror">
+                                    <input type="number" name="heart_rate" id="heart_rate" value="{{ old('heart_rate') }}" class="form-control @error('heart_rate') is-invalid @enderror">
                                     @error('heart_rate')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="respiratory_rate" class="form-label">Laju Pernapasan</label>
-                                    <input type="text" name="respiratory_rate" id="respiratory_rate" value="{{ old('respiratory_rate') }}" class="form-control @error('respiratory_rate') is-invalid @enderror">
+                                    <input type="number" name="respiratory_rate" id="respiratory_rate" value="{{ old('respiratory_rate') }}" class="form-control @error('respiratory_rate') is-invalid @enderror">
                                     @error('respiratory_rate')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -58,7 +58,7 @@
                             <div class="col-lg-6">
                                 <div class="mb-4">
                                     <label for="weight" class="form-label">Berat</label>
-                                    <input type="text" name="weight" id="weight" value="{{ old('weight') }}" class="form-control @error('weight') is-invalid @enderror">
+                                    <input type="number" name="weight" id="weight" value="{{ old('weight') }}" class="form-control @error('weight') is-invalid @enderror">
                                     @error('weight')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -67,11 +67,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="status_condition" class="form-label">Kondisi Status</label>
-                                    <select class="form-select @error('status_condition') is-invalid @enderror" name="status_condition" id="status_condition" aria-label="Default select example">
-                                        <option selected disabled>Pilih Status</option>
-                                        <option value="Sehat" {{ old('status_condition') == 'Sehat' ? 'selected' : '' }}>Sehat</option>
-                                        <option value="Tidak Sehat" {{ old('status_condition') == 'Tidak Sehat' ? 'selected' : '' }}>Tidak Sehat</option>
-                                    </select>
+                                    <input type="text" name="status_condition" id="statusCondition" class="form-control" readonly>
                                     @error('status_condition')
                                     <div class="invalid-feedback">
                                         {{ $message }}

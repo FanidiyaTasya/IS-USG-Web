@@ -39,7 +39,7 @@
                                     <div class="form-control mb-3 d-flex justify-content-center">
                                         <img src="{{ asset('assets/images/sheep/placeholder.jpeg') }}" class="img-preview img-fluid rounded fixed-img-create2">
                                     </div>
-                                    <input type="file" id="ultrasound_image" name="ultrasound_image" onchange="previewImage()" class="form-control @error('ultrasound_image') is-invalid @enderror">
+                                    <input type="file" id="ultrasound_image" name="ultrasound_image" data-url="{{ url('/predict-usg') }}" onchange="previewImage()" class="form-control @error('ultrasound_image') is-invalid @enderror">
                                     @error('ultrasound_image')
                                     <div class="invalid-feedback">
                                         {{ $message }}

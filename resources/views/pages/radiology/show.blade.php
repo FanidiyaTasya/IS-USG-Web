@@ -52,8 +52,12 @@
                                         <p>{{ $rad->gestational_age }} minggu</p>
                                     </div> --}}
                                     <div class="mb-4">
-                                        <strong>Status Kehamilan:</strong>
-                                        <p>{{ $rad->pregnancy_status }}</p>
+                                        <strong>Status Kehamilan:</strong><br>
+                                        @if ($rad->pregnancy_status == 'Bunting')
+                                        <span class="badge bg-success-subtle text-success">{{ $rad->pregnancy_status }}</span>
+                                        @else
+                                        <span class="badge bg-warning-subtle text-warning">{{ $rad->pregnancy_status }}</span>
+                                        @endif
                                     </div>
                                     <div class="mb-4">
                                         <strong>Keterangan Lain:</strong>

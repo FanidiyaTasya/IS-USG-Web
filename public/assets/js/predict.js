@@ -1,70 +1,85 @@
-// Fungsi untuk menangani prediksi USG
-function handleUSGPredict() {
-    $("#ultrasound_image").change(function(event) {
-        const predictUrl = $(this).data('url'); // Ambil URL dari data-url
+$(document).ready(function () {
+    $("#ultrasound_image").change(function(event){
         var formData = new FormData($("#radiologyForm")[0]);
 
-        // Tampilkan status awal
-        $('#statusMessage').text("Memproses gambar...");
-
-        // AJAX request
         $.ajax({
-            url: predictUrl,
+            url: '/predict-usg',
             type: 'POST',
             data: formData,
-            contentType: false,
-            processData: false,
+            contentType: false,  // Biarkan browser mengatur content-type
+            processData: false,  // Jangan proses data sebagai query string
             success: function(response) {
                 console.log('AJAX Success:', response);
-                $('#statusMessage').text("Prediksi selesai.");
-
-                if(response.result) {
-                    $("#predictionResult").val(response.result);
-                    $("#predictionResultText").html("Hasil: " + response.result);
-                } else {
-                    $("#predictionResult").val("Prediksi gagal.");
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', error);
-                $('#statusMessage').text("Terjadi kesalahan, coba lagi.");
-            }
-        });
-    });
-}
-
-// Fungsi untuk menangani prediksi kesehatan
-function handleHealthPredict() {
-    $("#health_data").change(function(event) {
-        var formData = new FormData($("#healthForm")[0]);
-        $('#healthStatusMessage').text("Memproses data kesehatan...");
-
-        $.ajax({
-            url: '{{ url('/predict-health') }}',
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                console.log('AJAX Success (Health):', response);
-                $('#healthStatusMessage').text("Prediksi kesehatan selesai.");
-
                 if (response.result) {
-                    $("#healthPredictionResult").val(response.result);
+                    $("#predictionResult").val(response.result);
+                    $("#predictionResultText").html("Prediction Result: " + response.result);
                 } else {
-                    $("#healthPredictionResult").val("Prediksi kesehatan gagal.");
+                    $("#predictionResult").val("Prediction failed.");
                 }
             },
             error: function(xhr, status, error) {
-                console.error('AJAX Error (Health):', error);
-                $('#healthStatusMessage').text("Terjadi kesalahan, coba lagi.");
+                console.error('AJAX Error:');
+                console.error('Status:', status);
+                console.error('Error:', error);
+                console.error('Response:', xhr.responseText);
             }
         });
     });
-}
 
-// Panggil fungsi saat dokumen siap
-$(document).ready(function() {
-    handleUSGPredict();
-    handleHealthPredict();
+    $('#vitalSignForm').on('submit', function (event) {
+        event.preventDefault(); // Cegah submit form default
+
+        var formData = new FormData($(this)[0]); // Ambil data dari form
+
+        // Debug: Log data yang akan dikirim
+        var formDataObject = Object.fromEntries(formData);
+        console.log("Data yang dikirim:", formDataObject);
+
+        // Kirim data ke endpoint prediksi kesehatan
+        $.ajax({
+            url: '/check-health',
+            method: 'POST',
+            data: JSON.stringify(Object.fromEntries(formData)), // Kirim sebagai JSON
+            contentType: 'application/json', // Set content type sebagai JSON
+            success: function (response) {
+                console.log("Prediksi Status Kesehatan:", response);
+
+                $('#statusCondition').val(response.prediction); // Masukkan prediksi ke input
+                formData.set('status_condition', response.prediction); // Tambahkan prediksi ke formData
+
+                // Kirim data vital sign ke server untuk disimpan
+                $.ajax({
+                    url: '/vital-sign',
+                    method: 'POST',
+                    data: formData,  // Kirim formData
+                    processData: false,  // Jangan proses data
+                    contentType: false,  // Biarkan browser mengatur content-type
+                    success: function (saveResponse) {
+                        console.log("Response:", saveResponse);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: saveResponse.message,
+                        }).then(() => {
+                            window.location.href = '/vital-sign';
+                        });
+                    },
+                    error: function (xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: 'Data tidak dapat disimpan. Silakan cek input Anda.',
+                        });
+                    }
+                });
+            },
+            error: function (xhr) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Gagal mendapatkan prediksi.',
+                });
+            }
+        });
+    });
 });

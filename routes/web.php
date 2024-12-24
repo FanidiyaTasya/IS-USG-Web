@@ -37,7 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::get('sheep/{id}/download', [SheepController::class, 'downloadQrCode'])->name('sheep.download');
 
     Route::resource('/assessment', InitialAssessmentController::class);
+    
     Route::resource('/vital-sign', VitalSignController::class);
+    Route::post('/check-health', [VitalSignController::class, 'predictHealth']);
     
     Route::resource('/radiology', RadiologyController::class);
     Route::post('/predict-usg', [RadiologyController::class, 'predictPregnant']);

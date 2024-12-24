@@ -46,13 +46,6 @@ class VitalSignController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(VitalSignRequest $request) {
-    //     // dd($request->all());
-    //     VitalSign::create($request->validated());
-    //     Alert::success('Berhasil!', 'Data Tanda Vital berhasil disimpan.');
-    //     return redirect('/vital-sign');
-    // }
-
     public function store(VitalSignRequest $request) {
         $data = $request->validated();
 

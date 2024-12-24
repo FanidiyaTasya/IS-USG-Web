@@ -65,7 +65,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                <div class="mb-4">
+                                {{-- <div class="mb-4">
                                     <label for="status_condition" class="form-label">Kondisi Status</label>
                                     <input type="text" name="status_condition" id="statusCondition" class="form-control" readonly>
                                     @error('status_condition')
@@ -73,7 +73,7 @@
                                         {{ $message }}
                                     </div>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="mb-4">
                                     <label for="additional_info" class="form-label">Keterangan Lain</label>
                                     <textarea name="additional_info" id="additional_info" rows="5" class="form-control @error('additional_info') is-invalid @enderror">{{ old('additional_info') }}</textarea>

@@ -44,8 +44,12 @@
                         <p>{{ $vitalSign->weight }} kg</p>
                     </div>
                     <div class="mb-4">
-                        <strong>Kondisi Status:</strong>
-                        <p>{{ $vitalSign->status_condition }}</p>
+                        <strong>Kondisi Status:</strong><br>
+                        @if ($vitalSign->status_condition == 'Sehat')
+                        <span class="badge bg-success-subtle text-success">{{ $vitalSign->status_condition }}</span>
+                        @else
+                        <span class="badge bg-danger-subtle text-danger">{{ $vitalSign->status_condition }}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="col-12 mt-4">

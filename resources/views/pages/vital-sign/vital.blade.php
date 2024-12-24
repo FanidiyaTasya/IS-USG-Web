@@ -42,7 +42,13 @@
                 <td style="text-align: center;">{{ $vs->heart_rate }}</td>
                 <td style="text-align: center;">{{ $vs->respiratory_rate }}</td>
                 <td>{{ $vs->weight }}kg</td> --}}
-                <td>{{ $vs->status_condition }}</td>
+                <td>
+                  @if ($vs->status_condition == 'Sehat')
+                  <span class="badge bg-success-subtle text-success">{{ $vs->status_condition }}</span>
+                  @else
+                  <span class="badge bg-danger-subtle text-danger">{{ $vs->status_condition }}</span>
+                  @endif
+                </td>
                 <td>
                   <a href="{{ route('vital-sign.edit', $vs->id) }}" class="btn btn-info btn-sm me-2">
                     <iconify-icon icon="solar:pen-new-square-outline" class="fs-5"></iconify-icon>

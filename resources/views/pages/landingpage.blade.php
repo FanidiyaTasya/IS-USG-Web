@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,500;0,900&display=swap" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <style>
       .gradient {
         background: linear-gradient(90deg, #5F6F52 0%, #FEFAE0 100%);
